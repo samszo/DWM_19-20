@@ -67,6 +67,16 @@
             overflow: auto;
             position: relative;
         }
+        div.tooltip {
+            position: absolute;
+            width: 200px;
+            padding: 6px;
+            font: 12px sans-serif;
+            border: 0px;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
 
     	</style>
 	</head>
@@ -140,6 +150,9 @@ var selectEtu;
             if (error) throw error;
             setData(results);
         });
+    var divTT = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
 
     function setData(data){
 
@@ -211,16 +224,17 @@ var selectEtu;
                         let urlTof = "https://drive.google.com/uc?id="+id+"&export=download";                        
                         return urlTof; 
                         });
-            //ajoute l'overlay sur l'image pour le tooltip du diagramme
+            /*ATTENTION problème quand les images ne sont pas à la même taille
+            ajoute l'overlay sur l'image pour le tooltip du diagramme
             cards.append("div")
                     .attr('id',function(d, i) {return 'imgOver'+i})
                     .attr('class','card-img-overlay')
-                    .style('height','50%')
                     .on("click",function(e){
                         //console.log(e);
                         selectEtu = e;
                         $('#infosEtu').modal('show');
                     });
+            */
 
             //ajoute le corps de la carte
             var cardBody = cards.append('div').attr('class','card-body');
@@ -231,6 +245,10 @@ var selectEtu;
             cardBody.append('h5').attr('class','card-title')	  			
                 .text(function(d) { 
                     return d['Votre nom'].toLowerCase(); 
+                        });
+            cardBody.append('h5').attr('class','card-title')	  			
+                .text(function(d) { 
+                    return 'Projet : '+d['Projet']; 
                         });
             cardBody.append('h6').text("plus d'infos...")
                 .on("click",function(e){
@@ -356,7 +374,10 @@ function donutChart() {
                 .datum(data).selectAll('path')
                 .data(pie)
               .enter().append('path')
-                .attr('fill', function(d) { return colour(d.data[category]); })
+                .attr('fill', function(d) { 
+                    d.couleur = colour(d.data[category])
+                    return d.couleur; 
+                })
                 .attr('d', arc);
             // ===========================================================================================
 
@@ -430,9 +451,16 @@ function donutChart() {
                 selection.on('mouseenter', function (data) {
                 	
                 		//rend l'image trnasparente
-                		d3.select('#imgCard'+data.data.id).style('opacity', 0.35);
-                		//affiche le texte
-                		d3.select('#imgOver'+data.data.id).html(toolTipHTML(data));                		
+                		//d3.select('#imgCard'+data.data.id).style('opacity', 0.35);
+                        //affiche le texte
+                		//d3.select('#imgOver'+data.data.id).html(toolTipHTML(data));                		
+                        divTT.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        divTT.html(toolTipHTML(data))
+                            .style('background', data.couleur)
+                            .style("left", (d3.event.pageX) + "px")
+                            .style("top", (d3.event.pageY - 28) + "px");
 
                     /*
                 		svg.append('text')
@@ -454,10 +482,13 @@ function donutChart() {
                 selection.on('mouseout', function (data) {
                     d3.selectAll('.toolCircle').remove();
 	            		//rend l'image normal
-	            		d3.select('#imgCard'+data.data.id).style('opacity', 1);
+	            		//d3.select('#imgCard'+data.data.id).style('opacity', 1);
 	            		//supprime le texte
-	            		d3.select('#imgOver'+data.data.id).html("");                		                    
-                });
+                        //d3.select('#imgOver'+data.data.id).html("");                		                    
+                        divTT.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                                    });
             }
 
             // function to create the HTML string for the tool tip. Loops through each key in data object
