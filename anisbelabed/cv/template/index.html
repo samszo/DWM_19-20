@@ -476,7 +476,10 @@ d3.csv(urlData)
             .attr('width','100%');
         div.selectAll('div').data(data).enter().append('div')
             .html(function(d,i){
-                return i+" "+d['Votre nom'];
+              if (d["N° étudiant"] == 17800734) {
+                return i+" "+d['Votre nom'] + " " + d['Votre prénom'];
+              }
+               
             });
     })
     .catch(function(error){
