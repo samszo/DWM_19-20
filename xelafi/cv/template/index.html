@@ -2,8 +2,9 @@
 <html>
 	<head>
 	<meta charset="utf-8">
+	<script src='//d3js.org/d3.v5.min.js'></script>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CV Alexandre FILIPE</title>
+	<title>CV Alexandre FILIPE< </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -57,7 +58,29 @@
 		<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
 			<div class="text-center">
 				<div class="author-img" style="background-image: url(images/alextest.jpg);"></div>
-				<h1 id="colorlib-logo"><a href="index.html">Alexandre FILIPE</a></h1>
+				<h1 id="colorlib-logo"><a href="index.html">Alexandre <div id='conteneur'></div>
+				<script>
+
+    var urlData = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRYChirvPQ02QIu5UwLfx3uDcUlTMQxqhOsFikyIvGoy32mQmzCc7t5NFD2vCo-mvTlZusEeXvE6SCl/pub?gid=334952637&single=true&output=csv'            
+    d3.csv(urlData)
+        .then(function(data) {
+            console.log(data);
+            var div = d3.select('#conteneur').append('div')
+                .attr('height','100%')
+                .attr('width','100%');
+            div.selectAll('div').data(data).enter().append('div')
+                .html(function(d,i){
+				if (i==1){
+                    return d['Votre nom'];
+					}
+                });
+        })
+        .catch(function(error){
+            console.log(error);
+        });
+
+
+    </script> </a></h1>
 				<span class="position"><a href="#">Développer WEB</a> à Paris</span>
 			</div>
 			<nav id="colorlib-main-menu" role="navigation" class="navbar">
