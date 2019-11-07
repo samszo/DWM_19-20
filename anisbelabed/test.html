@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ma page test</title>
+
+    <style>
+        circle {
+
+            fill: blue;
+            r:6px; 
+        }
+        #anis {
+            fill: coral; 
+        }
+
+        .vert {
+            stroke: green; 
+            stroke-width: 3px; 
+        }
+    
+     </style>
+</head>
+<body>
+
+    <h1>Voici ma page web</h1>
+
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+
+        <circle onmousemove="changeCouleurCercleDeuxiem();" onmousemove="console.log('bouge')" cx="10" cy="10" r="10"/>
+        <circle onclick="alert('je suis anis');" class="vert" id='anis' cx="20" cy="10" r="10"/>
+        <circle onmouseover="console.log('OK')" class="vert" cx="30" cy="10" r="10"/>
+      </svg>
+
+      <script>
+          //alert('Bonjour anis'); 
+          //alert('Au revoir lucile'); 
+
+        var r=0,g=0,b=0; 
+        function changeCouleurCercleDeuxiem(){
+            //récuperer le deuxieme cercle 
+            var cerclequejeveuxmodifier = document.getElementById('anis'); 
+            r ++; 
+            g += 2; 
+            b += 3; 
+            if(r>255) r=0; 
+            if(g>255) r=0; 
+            if(b>255) r=0; 
+            c.style.fill = "rgb("+r+", "+g+", "+b+")"; 
+        }
+    </script>
+</body>
+</html>
