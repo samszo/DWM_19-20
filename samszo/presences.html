@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>DWM : présences des étudiants 2019 - 2020</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="js/dimple.v2.3.0.min.js"></script>
+		<style type="text/css">
+		/*pour les initiales en majuscule*/
+		.card-title:first-letter{
+			text-transform: uppercase;
+        }
+    	</style>
+	</head>
+<body>
+
+<div class="container">    
+  <h4>Design Web Mobile</h4>
+  <h5>Présences de la promotion 2019 - 2020</h5>
+    <div class="row">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Intervenant</th>
+      <th scope="col">Cours</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+    <div class="row">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Etudiant</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Signature</th>
+    </tr>
+  </thead>
+  <tbody id="etuListe" >
+  </tbody>
+</table>
+    </div>
+</div>
+        
+
+
+
+<script>
+
+
+var dataPhoto, dataForm;
+var selectEtu;
+
+
+    //récupération des données des formulaires google
+    //"FormulaireGEN19.csv";//
+    var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRYChirvPQ02QIu5UwLfx3uDcUlTMQxqhOsFikyIvGoy32mQmzCc7t5NFD2vCo-mvTlZusEeXvE6SCl/pub?gid=334952637&single=true&output=csv'            
+    var q = d3.queue()
+        .defer(d3.csv, url)
+        //.defer(d3.csv, 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTOMGeNwb-DoechnH4p4xKS87Ts7apNS4-G9lLHhXW_90BP8ZsW4oRNKObk26hM5CW-0wA2mEqg1kaO/pub?output=csv')
+        .awaitAll(function(error, results) {
+            if (error) throw error;
+                setData(results);
+        });
+
+    function setData(data){
+
+            dataForm = data[0];
+            let dataEtu = []; 
+            	
+            var etus = d3.select('#etuListe').selectAll("tr").data(dataForm).enter()
+                .append('tr');
+            etus.append("td").append("img")
+                    .attr('class',"img-thumbnail")
+                    .style('height', '30px')
+                    .attr('id',function(d, i) {return 'imgCard'+i})
+                    .attr('src',function(d) { 
+                        //merci à https://davidwalsh.name/query-string-javascript
+                        // https://developers.google.com/web/updates/2016/01/urlsearchparams?hl=en
+                        let urlTof = "";
+                        if(d['Votre photo']){
+                            let url = new URL(d['Votre photo']);
+                            let urlParam = new URLSearchParams(url.search);
+                            let id = urlParam.get('id');
+                            //merci à https://stackoverflow.com/questions/50664868/get-pictures-from-google-drive-folder-with-javascript-to-my-website
+                            urlTof = "https://drive.google.com/uc?id="+id+"&export=download";                        
+                        }
+                        return urlTof; 
+
+                        });
+            etus.append("td")
+                .attr('class','card-title')
+                .html(function(d) { 
+                    return d['Votre prénom'] ? d['Votre prénom'].toLowerCase() : "";
+                });
+            etus.append("td")
+                .attr('class','card-title')
+                .html(function(d) { 
+                    return d['Votre nom'] ? d['Votre nom'].toLowerCase() : "";
+                });
+            etus.append("td")
+                .html(function(d) { 
+                    return "";
+                });
+}
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
