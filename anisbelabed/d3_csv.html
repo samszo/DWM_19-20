@@ -19,8 +19,8 @@
           .attr('width', '100%');
         div.selectAll('div').data(data).enter().append('div')
           .html(function (d, i) {
-            if(d['N° étudiant']==17800734) {
-            return i + " " + d['Votre nom'];
+            if(d["N° étudiant"]==17800734) {
+            return i + " " + d['Votre nom'] + " " + d['Votre prénom'];
             }
           });
       })
