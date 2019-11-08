@@ -1,10 +1,9 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>DWM : trombinoscope des étudiants 2019 - 2020</title>
+		<title>Teste</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		
-	    <!-- Bootstrap CSS -->
+			    <!-- Bootstrap CSS -->
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 		<script src="https://d3js.org/d3.v4.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -25,55 +24,12 @@
 		<div class="row" id="etuCards" >
         </div>
         
-<div class="modal fade" id="infosEtu" tabindex="-1" role="dialog" aria-labelledby="modalEtuTitle" aria-hidden="true">
-    <div class="modal-dialog modal-full" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalEtuTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="modalEtuBody" >
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link" id="sitePerso-tab" data-toggle="tab" href="#sitePerso" role="tab" aria-controls="sitePerso" aria-selected="false">Site Perso</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="diigoTags-tab" data-toggle="tab" href="#diigoTags" role="tab" aria-controls="diigoTags" aria-selected="true">Diigo Tags</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="veilleRecap-tab" data-toggle="tab" href="#veilleRecap" role="tab" aria-controls="veilleRecap" aria-selected="false">Veilles</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="rssFlux-tab" data-toggle="tab" href="#rssFlux" role="tab" aria-controls="rssFlux" aria-selected="false">Flux RSS</a>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade" id="diigoTags" role="tabpanel" aria-labelledby="diigoTags-tab">...</div>
-                <div class="tab-pane fade" id="sitePerso" role="tabpanel" aria-labelledby="sitePerso-tab">...</div>
-                <div class="tab-pane fade" id="veilleRecap" role="tabpanel" aria-labelledby="veilleRecap-tab"></div>
-                <div class="tab-pane fade" id="rssFlux" role="tabpanel" aria-labelledby="rssFlux-tab"></div>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </div>
-
 <script>
+var dataPhoto, dataForm;
 
-
-var dataPhoto, dataForm, urlBase='http://www.samszo.univ-paris8.fr/GEN/19/';
-var vals = {"Pas besoin":1, "Besoin d'approfondissement":5, "Besoin urgent":10, "je ne connais pas du tout":1,"je connais un peu":5,"je vonnais bien":10,"je suis expert(e)":20};
-var selectEtu;
-
-
-    //récupération des données des formulaires google
+	//récupération des données des formulaires google
     //"FormulaireGEN19.csv";//
     var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRYChirvPQ02QIu5UwLfx3uDcUlTMQxqhOsFikyIvGoy32mQmzCc7t5NFD2vCo-mvTlZusEeXvE6SCl/pub?gid=334952637&single=true&output=csv'            
     var q = d3.queue()
@@ -83,71 +39,17 @@ var selectEtu;
             if (error) throw error;
             setData(results);
         });
-    var divTT = d3.select("body").append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
-
+    
     function setData(data){
 
             dataForm = data[0];
-            let dataEtu = []; 
-            
-
-            //réorganise les datas
-            dataForm.forEach(function(d, j){
-                d.reponses = {'besoins':[],'competences':[],'outils':[]};
-                for (let i in d) {
-                    var prop = i.substring(i.indexOf("[")+1,i.indexOf("]")); 
-                    var v = d[i];
-                    var n = vals[v];
-                    if(i.indexOf("besoins")>0){
-                        d.reponses.besoins.push({'prop':prop,'importance':n,'expression':v,'id':j});
-                        //d.reponses.push({'besoins':prop,'val':n,'lib':v});
-                    }
-                    if(i.indexOf("compétences")>0){
-                        d.reponses.competences.push({'prop':prop,'importance':n,'expression':v,'id':j});
-                    }
-                    if(i.indexOf("outils utilisez")>0){
-                        d.reponses.outils.push({'prop':prop,'importance':n,'expression':v,'id':j});
-                    }							
-                }
-            });		
-
-            /*construction simple
-            var arrDiv = d3.select("#container")
-                .selectAll("div")
-                .data(data)
-                .enter().append("div")
-                .text(function(d) { 
-                        return d['Votre prénom'].toLowerCase() + ' ' + d['Votre nom'].toLowerCase(); 
-                    });		
-            arrDiv.append("img")
-                .attr('src',function(d) { 
-                        var item = dataPhoto.photoset.photo[d['N° photo']];
-                    var src = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_s.jpg';
-                        return src; 
-                    });
-            */
-
-            /*construction bootstrap
-            merci à https://getbootstrap.com/docs/4.0/components/card/
-                <div class="col-sm-3 mb-4">
-            <div class="card">
-                    <img class="card-img img-fluid" src="<?php echo $picture_link; ?>" alt="Card image">
-                    <p class="card-text"><?php echo $value['Prénom']; ?> <br> <?php echo $value['Nom']; ?> <br>
-                    <small class="text-muted"><?php echo $value['E-mail']; ?></small>
-                    </p>
-            </div>
-            </div>
-
-            */
-            var cards = d3.select('#etuCards').selectAll(".col-sm-4 mb-12").data(dataForm).enter()
-                .append('div').attr('class','col-sm-4 mb-12').style('margin-bottom','10px')
-                .append("div").attr('class','card');
+           
+            var cards = d3.select('#etuCards').selectAll(".col-sm-6 mb-12").data(dataForm).enter()
+                .append('div').attr('class','col-sm-6 mb-12').style('margin-bottom','20px')
+                
             cards.append("img")
-                    .attr('id',function(d, i) {return 'imgCard'+i})
-                    .attr('class','card-img-top')
-                    .attr('src',function(d) { 
+                   .attr('class','card-img-top')
+                    .attr('src',function(d) {if(d['Votre nom']=="EZZIKI") { 
                         //merci à https://davidwalsh.name/query-string-javascript
                         // https://developers.google.com/web/updates/2016/01/urlsearchparams?hl=en
                         let url = new URL(d['Votre photo']);
@@ -156,117 +58,11 @@ var selectEtu;
                         //merci à https://stackoverflow.com/questions/50664868/get-pictures-from-google-drive-folder-with-javascript-to-my-website
                         let urlTof = "https://drive.google.com/uc?id="+id+"&export=download";                        
                         return urlTof; 
-                        });
-            /*ATTENTION problème quand les images ne sont pas à la même taille
-            ajoute l'overlay sur l'image pour le tooltip du diagramme
-            cards.append("div")
-                    .attr('id',function(d, i) {return 'imgOver'+i})
-                    .attr('class','card-img-overlay')
-                    .on("click",function(e){
-                        //console.log(e);
-                        selectEtu = e;
-                        $('#infosEtu').modal('show');
-                    });
-            */
-
-            //ajoute le corps de la carte
-            var cardBody = cards.append('div').attr('class','card-body');
-            cardBody.append('h4').attr('class','card-title')	  			
-                        .text(function(d) { 
-                            return d['Votre prénom'].toLowerCase(); 
-                                });
-            cardBody.append('h5').attr('class','card-title')	  			
-                .text(function(d) { 
-                    return d['Votre nom'].toLowerCase(); 
-                        });
-            
-            cardBody.append('h5').attr('class','card-title')	  			
-                .text(function(d) { 
-                    return 'Projet : '+d['Projet']; 
-                        });
-            cardBody.append('h6').text("plus d'infos...")
-                .on("click",function(e){
-                            console.log(e);
-                            selectEtu = e;
-                            $('#infosEtu').modal('show');
-                        });
-
-            //construction du layout pour les graphiques
-           
+                        }});         
 
 }
 
-
-//merci à https://bl.ocks.org/mbhall88/b2504f8f3e384de4ff2b9dfa60f325e2
-
-//Fin appel JSON
-
-
-
-//gestion des fenêtre modale
-//l'événement d'ouverture
-
-//l'événement de fin d'ouverture
-$('#infosEtu').on('shown.bs.modal', function (e) {
-    //console.log(e);
-    /**Création du script 
-     * merci à https://www.journaldunet.fr/web-tech/developpement/1202955-comment-inclure-un-fichier-javascript-dans-un-autre-fichier-javascript/
-    var js = document.createElement('script');
-    js.type = 'text/javascript';
-    js.src = "https://www.diigo.com/tools/tagrolls_script/luckysemiosis?icon;size=11-23;color=87ceeb-0000ff;title=My%20Diigo%20Tags;name;showadd;v=3" ;
-    document.getElementById('modalEtuBody').appendChild(js);
-    **/
-
-    //pour mettre le contenu des tabs à 100%
-    d3.select("#myTabContent").style('height',d3.select("#modalEtuBody").style('height'));
-    //affiche la tab du site perso
-    $('#sitePerso').tab('show');
-    
-})
-
-
-//gestion des ouverture de tab
-$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-  if(e.target.id=='veilleRecap-tab'){
-        //initiale la tab
-        d3.select('#veilleRecapDiv').remove();
-        let divRecapVeille = d3.select('#veilleRecap').append('div')
-            .attr('id','veilleRecapDiv')
-            .attr('style','height: 100%;overflow:scroll;');
-        //affichage de la présentation au format .md
-        var url = "../"+selectEtu['Votre compte GitHub']+"/veille.md";
-        var cont = divRecapVeille.append('div');
-        mdToHtml(url,cont);
-        //affiche la veille des formulaires
-        divRecapVeille.append('h1').html('Réponses aux formulaires').append('ul');
-        if(selectEtu['alertes']){
-            divRecapVeille.append('h2').html('Alertes Google');
-            let ulAG = divRecapVeille.append('ul');
-            ulAG.selectAll('li').data(selectEtu['alertes']).enter().append('li').html(function(d){return d;});
-        }else divRecapVeille.append('h2').html("Aucunne alertes Google");        
-        if(selectEtu['alertes']){
-            divRecapVeille.append('h2').html('Newsletter')
-            let ulNL = divRecapVeille.append('ul');
-            ulNL.selectAll('li').data(selectEtu['newletters']).enter().append('li')
-            .html(function(d){return '<a href="'+d+'" target="_blank">'+d+'</a>';});
-        }else divRecapVeille.append('h2').html("Aucunne Newsletter");
-
-                
-  }
-  if(e.target.id=='rssFlux-tab'){
-        let urlBaseGit = 'https://raw.githubusercontent.com/samszo/GEN_19/master/'+selectEtu['Votre compte GitHub']+'/dashboard.xml'    
-        let oOpml = new opml({'urlData':urlBaseGit,'idCont':'rssFlux'});
-  }
-  /*
-  $('[data-spy="scroll"]').each(function () {
-    var $spy = $(this).scrollspy('refresh')
-    })
-*/
-})
-
-
 </script>
-
 
 </body>
 </html>
