@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Teste</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="js/dimple.v2.3.0.min.js"></script>
+		<style type="text/css">
+		
+    	</style>
+	</head>
+<body>
+
+<div class="jumbotron">
+  <h1 class="display-3">DWM</h1>
+  <hr class="my-4">
+  <h2>Promotion 2019 - 2020</h2>
+</div>
+
+	<div class="container">    
+		<div class="row" id="etuCards" >
+        </div>
+        
+
+</div>
+<script>
+var dataPhoto, dataForm;
+
+	//récupération des données des formulaires google
+    //"FormulaireGEN19.csv";//
+    var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRYChirvPQ02QIu5UwLfx3uDcUlTMQxqhOsFikyIvGoy32mQmzCc7t5NFD2vCo-mvTlZusEeXvE6SCl/pub?gid=334952637&single=true&output=csv'            
+    var q = d3.queue()
+        .defer(d3.csv, url)
+        //.defer(d3.csv, 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTOMGeNwb-DoechnH4p4xKS87Ts7apNS4-G9lLHhXW_90BP8ZsW4oRNKObk26hM5CW-0wA2mEqg1kaO/pub?output=csv')
+        .awaitAll(function(error, results) {
+            if (error) throw error;
+            setData(results);
+        });
+    
+    function setData(data){
+
+            dataForm = data[0];
+           
+            var cards = d3.select('#etuCards').selectAll(".col-sm-6 mb-12").data(dataForm).enter()
+                .append('div').attr('class','col-sm-6 mb-12').style('margin-bottom','20px')
+                
+            cards.append("img")
+                   .attr('class','card-img-top')
+                    .attr('src',function(d) {if(d['Votre nom']=="EZZIKI") { 
+                        //merci à https://davidwalsh.name/query-string-javascript
+                        // https://developers.google.com/web/updates/2016/01/urlsearchparams?hl=en
+                        let url = new URL(d['Votre photo']);
+                        let urlParam = new URLSearchParams(url.search);
+                        let id = urlParam.get('id');
+                        //merci à https://stackoverflow.com/questions/50664868/get-pictures-from-google-drive-folder-with-javascript-to-my-website
+                        let urlTof = "https://drive.google.com/uc?id="+id+"&export=download";                        
+                        return urlTof; 
+                        }});         
+
+}
+
+</script>
+
+</body>
+</html>
