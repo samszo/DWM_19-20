@@ -325,3 +325,13 @@ footer {
   .demo:hover {
     opacity: 1;
   }
+
+
+  /* Bandeau */
+
+
+.bandeau{
+    background-color: rgba(240, 128, 162, 0.479);
+    margin: 0px;
+    padding: 0px;
+}
