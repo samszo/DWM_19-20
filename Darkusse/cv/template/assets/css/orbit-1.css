@@ -236,12 +236,18 @@ p {
 
 .main-wrapper .job-title {
   color: #3F4650;
-  font-size: 16px;
+  font-size: 20px;
   margin-top: 0;
   margin-bottom: 0;
   font-weight: 500;
 }
-
+.main-wrapper .summary {
+  color: #3F4650;
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 500;
+}
 .main-wrapper .time {
   position: absolute;
   right: 0;
