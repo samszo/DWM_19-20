@@ -805,3 +805,10 @@ fieldset {
         font-size: 10px;
     }
 }
+.mapid{
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    bottom: 50px;
+    right: 10px;
+}
