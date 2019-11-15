@@ -600,7 +600,7 @@ $('#infosEtu').on('show.bs.modal', function (e) {
     var htm = '<p><a href="'+url+'">'+url+'</a></p>';
     htm += '<iframe id="ifDiigoEtu" title="Diigo étudiant" src="'+url+'"></iframe>';
     d3.select('#diigoTags').html(htm);
-    url = selectEtu['site'];
+    url = '../'+selectEtu['Votre compte GitHub']+'/cv/template/';
     htm = '<p><a href="'+url+'">'+url+'</a></p>';
     htm += '<iframe id="ifSitePerso" title="Site Perso" src="'+url+'"></iframe>';
     d3.select('#sitePerso').html(htm);

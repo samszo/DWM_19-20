@@ -8847,9 +8847,9 @@ h1, h2, h3, h4, h5,
       .project.img-2 .text h3 {
         font-size: 22px; }
         .project.img-2 .text h3 a {
-          color: #fff; }
+          color: #6dbfcd; }
       .project.img-2 .text span {
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(98, 233, 247, 0.8);
         text-transform: uppercase;
         letter-spacing: 2px; }
       @media (max-width: 767.98px) {
@@ -8866,7 +8866,7 @@ h1, h2, h3, h4, h5,
     bottom: 0;
     content: '';
     opacity: 0;
-    background: #0075f6;
+    background: #f6f7f8;
     z-index: -1;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -8888,16 +8888,16 @@ h1, h2, h3, h4, h5,
     .project .text h3 {
       font-size: 20px; }
       .project .text h3 a {
-        color: #fff; }
+        color: #71cdd1; }
     .project .text span {
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(35, 190, 190, 0.8);
       text-transform: uppercase;
       letter-spacing: 2px; }
     @media (max-width: 767.98px) {
       .project .text {
         opacity: 1; }
         .project .text span {
-          color: rgba(255, 255, 255, 0.8); } }
+          color: rgba(63, 150, 156, 0.479); } }
   .project:hover .overlay, .project:focus .overlay {
     opacity: .9; }
   .project:hover .text, .project:focus .text {
