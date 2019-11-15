@@ -1,152 +1,792 @@
-<!DOCTYPE html>
-<html lang="fr">
+﻿<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IAMX, One Page Responsive HTML Resume Template">
+    <meta name="keywords" content="onepage, resume, CV HTML template, personal Vcard, html resume, free resume template, free HTML template, free bootstrap template, personal portfolio, free html portfolio">
+    <meta name="author" content="http://trendytheme.net/">
 
-    <title>SHRAIDY Rudy - Artist and Web designer</title>
+    <title>IAMX – Responsive Personal Portfolio vCard Template</title>
 
+    <!-- Web Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap core CSS -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!-- Font Awesome CSS -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" media="screen">
+    <!-- Animate css -->
+    <link href="assets/css/animate.css" rel="stylesheet">
+    <!-- Magnific css -->
+    <link href="assets/css/magnific-popup.css" rel="stylesheet">
+    <!-- Custom styles CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" media="screen">
+    <!-- Responsive CSS -->
+    <link href="assets/css/responsive.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
-    <!-- Fichiers CSS -->
-    <link rel="stylesheet" href="Sheldon%20COOPER%20-%20Physicien%20surdou%C3%A9%20et%20Geek%20qualifi%C3%A9_files/reset.css">
-    <!--[if lt IE 9]> 
-	<link rel="stylesheet" href="css/cv.css" media="screen">
-<![endif]-->
-    <link rel="stylesheet" media="screen and (max-width:480px)" href="Sheldon%20COOPER%20-%20Physicien%20surdou%C3%A9%20et%20Geek%20qualifi%C3%A9_files/mobile.css">
-    <link rel="stylesheet" media="screen and (min-width:481px)" href="Sheldon%20COOPER%20-%20Physicien%20surdou%C3%A9%20et%20Geek%20qualifi%C3%A9_files/cv.css">
-    <link rel="stylesheet" media="print" href="Sheldon%20COOPER%20-%20Physicien%20surdou%C3%A9%20et%20Geek%20qualifi%C3%A9_files/print.css">
+    <link rel="shortcut icon" href="assets/images/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/images/ico/apple-touch-icon-57-precomposed.png">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 
 <body>
-
-    <!-- Header -->
-    <header role="banner">
-        <div class="container_16">
-            <hgroup>
-                <h1>Rudy SHRAIDY</h1>
-                <h2>Artist and Web designer</h2>
-            </hgroup>
-
-            <figure>
-                <img src="Sheldon%20COOPER%20-%20Physicien%20surdou%C3%A9%20et%20Geek%20qualifi%C3%A9_files/avatar1.jpg" alt="Sheldon COOPER">
-            </figure>
+    <!-- Preloader -->
+    <div id="tt-preloader">
+        <div id="pre-status">
+            <div class="preload-placeholder"></div>
         </div>
-    </header>
+    </div>
 
-    <!-- Contact -->
-    <section class="contactform clearfix">
-        <div class="container_16">
-            <h3>Contactez-moi</h3>
-            <p>Remplissez le formulaire ci-dessous afin de m'envoyer un message. Je vous répondrais dans les plus bref délai.
-                <br><em>Tous les champs sont requis.</em></p>
-            <form novalidate="novalidate" method="post" action="#" name="contact" class="grid_16">
-                <p class="grid_10"><textarea name="message" placeholder="Votre message" class="required"></textarea></p>
-                <p class="grid_6">
-                    <input name="nom" placeholder="Nom - Prénom" class="required" type="text">
-                    <input name="email" placeholder="Adresse email" class="required" type="email">
-                    <input name="envoi" value="Envoyer le message" class="required" type="submit">
-                    <span class="messageform"></span>
-                </p>
-            </form>
-        </div>
-    </section>
+    <!-- Home Section -->
+    <section id="home" class="tt-fullHeight" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2">
+        <div class="intro">
+            <div class="intro-sub">WEB DESIGNER</div>
+            <h1>Rudy <span>SHRAIDY</span></h1>
 
-    <!-- Corps -->
-    <section role="main" class="container_16 clearfix">
-        <div class="grid_16">
-            <!-- A propos -->
-            <div class="grid_8 apropos">
-                <h3>A propos</h3>
+            <div class="social-icons">
+                <ul class="list-inline">
+                    <li><a href="https://www.facebook.com/rudy.shraidy" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="https://twitter.com/ShraidyR" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://github.com/shraidy" target="_blank"><i class="fab fa-github"></i></a></li>
 
-                <p>Agé de 29 ans d'origine syrienne en France depuis 2017 passionné par le web design pratique les arts (de la peinture, décoration, sculptur, dessin ) depuis de nombreuses années. </p>
-            </div>
-
-            <!-- Compétences -->
-            <div class="grid_8 competences">
-                <h3>Compétences</h3>
-                <ul class="barres">
-                    <li data-skills="80">Adobe Photoshop<span style="width: 80%;"></span></li>
-                    <li data-skills="70">Adobe Illustrator<span style="width: 70%;"></span></li>
-                    <li data-skills="75">Adobe Xdesign<span style="width: 75%;"></span></li>
-                    <li data-skills="45">HTML+CSS<span style="width: 45%;"></span></li>
-                    <li data-skills="30">Java Script<span style="width: 30%;"></span></li>
                 </ul>
             </div>
+            <!-- /.social-icons -->
         </div>
 
-        <!-- Expériences -->
-        <div class="grid_16 experiences">
-            <h3>Expériences</h3>
-            <ul>
-                <li>
-                    <h4><strong>Artist Peintre </strong> Indépedient</h4>
-                    <span class="lieu">Damas</span>
-                    <span class="dates">Depuis 2015</span>
-                    <p></p>
-                </li>
-                <li>
-                    <h4><strong>Enseignement </strong> Indépedient</h4>
-                    <span class="lieu">Damas</span>
-                    <span class="dates">2011-2012</span>
-                    <p> j'ai travaillé comme enseigneur avec les enfants des réfugies d'intérieur dans les cartiers de Damas.</p>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Formations -->
-        <div class="grid_16 formations">
-            <h3>Formations</h3>
-            <ul>
-                <li>
-                    <h4><strong> Baccalauréat scientifique</strong> Damas</h4>
-                    <span class="lieu">Syrie</span>
-                    <span class="dates">2008</span>
-
-                </li>
-                <li>
-                    <h4><strong>License En Beaux-arts</strong> UNI de Damas</h4>
-                    <span class="lieu">Syrie-Damas</span>
-                    <span class="dates">2009-2015</span>
-                    <p>Option : peinture, quatre années d'études supérieures dans le système éducatif syrien</p>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Loisirs -->
-        <div class="grid_8 loisirs">
-            <h3>Loisirs</h3>
-            <p><strong>Sports :</strong> football<br> échecs <br>tennis de table</p>
-
-
-        </div>
-
-        <!-- Contact -->
-        <div class="grid_8 contact">
-            <h3>Contact</h3>
-            <p>Si mon profil vous intéresse, n'hésitez pas à me contacter :</p>
-            <ul>
-                <li class="lieu">Paris, France</li>
-                <li class="phone">07 67 11 50 87</li>
-                <li class="mail"><a href="mailto:mon.adresse@email.fr">rudy_shraidy@hotmail.com</a></li>
-
-                </li>
-            </ul>
+        <div class="mouse-icon">
+            <div class="wheel"></div>
         </div>
     </section>
+    <!-- End Home Section -->
 
-    <!-- Scripts JavaScript -->
-    <script src="Sheldon%20COOPER%20-%20Physicien%20surdou%C3%A9%20et%20Geek%20qualifi%C3%A9_files/jquery-1.js"></script>
-    <script src="Sheldon%20COOPER%20-%20Physicien%20surdou%C3%A9%20et%20Geek%20qualifi%C3%A9_files/validate.js"></script>
-    <!--[if lt IE 9]>
-<script src="scripts/placeholder.js"></script>
-<![endif]-->
-    <script src="Sheldon%20COOPER%20-%20Physicien%20surdou%C3%A9%20et%20Geek%20qualifi%C3%A9_files/plugins.js"></script>
+
+
+
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="navbar navbar-custom" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+                    <a class="navbar-brand" href="index.html"><img src="assets/images/logo3.png" alt=""></a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="custom-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#resume">Resume</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#works">Works</a></li>
+                        <!-- <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            <!-- .container -->
+        </nav>
+    </header>
+    <!-- End Navigation -->
+
+
+    <!-- About Section -->
+    <section id="about" class="about-section section-padding">
+        <div class="container">
+            <h2 class="section-title wow fadeInUp">About Me</h2>
+
+            <div class="row">
+
+                <div class="col-md-4 col-md-push-8">
+                    <div class="biography">
+                        <div class="myphoto">
+                            <img src="assets/images/myphoto.jpg" alt="">
+                        </div>
+                        <ul>
+                            <li><strong>Name:</strong> Rudy SHRAIDY</li>
+                            <li><strong>Date of birth:</strong> 11/06/1989</li>
+                            <li><strong>Address:</strong> 5,rue du PLessis,<br> Pontault Combault FRANCE</li>
+                            <li><strong>Nationality:</strong> syrien</li>
+                            <li><strong>Phone:</strong> (+33) 7 67 11 50 87</li>
+                            <li><strong>Email:</strong> <a href="mailto:rudy_shraidy@hotmail.com">rudy_shraidy@hotmail.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- col-md-4 -->
+
+                <div class="col-md-8 col-md-pull-4">
+                    <div class="short-info wow fadeInUp">
+                        <h3>About me</h3>
+                        <p>I am professional syrian plastic artist, 30 years old, i live in Paris,<br> practicing the painting, sculpture and the interior design since 2015.<br><br> I am passionated by the web design, desire to work in this field where
+                            <br>i can use my creative skills. </p>
+                    </div>
+                    <br><br>
+                    <div class="col-md-6">
+                        <div class="skill-progress">
+                            <div class="skill-title">
+                                <h3>Arabic</h3>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span>100%</span>
+                                </div>
+                            </div>
+                            <!-- /.progress -->
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-title">
+                                <h3>English</h3>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><span>85%</span>
+                                </div>
+                            </div>
+                            <!-- /.progress -->
+                        </div>
+                        <!-- /.skill-progress -->
+                        <div class="skill-progress">
+                            <div class="skill-title">
+                                <h3>French</h3>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><span>75%</span>
+                                </div>
+                            </div>
+                            <!-- /.progress -->
+                        </div>
+                        <!-- /.skill-progress -->
+                        <div class="skill-progress">
+                            <div class="skill-title">
+                                <h3>German</h3>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"><span>45%</span>
+                                </div>
+                            </div>
+                            <!-- /.progress -->
+                        </div>
+                        <!-- /.skill-progress -->
+                    </div>
+                    <!-- /.col-md-6 -->
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- End About Section -->
+
+
+    <!-- Video Section -->
+    <!-- <section id="video" class="video-section">
+        <div class="tf-bg-overlay">
+
+            <div class="container">
+
+                <div class="video-intro">
+                    <a class="popup-video" href="https://www.youtube.com/watch?v=LGOjcu0HRec"> <i class="fa fa-play"></i> </a>
+                    <h2>Video Introducing</h2>
+                </div>
+
+            </div>
+
+            /.container-->
+    <!-- </div> -->
+    <!--/.overlay-->
+    <!--   </section>-->
+    <!-- /.Video Section -->
+
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume-section section-padding">
+        <div class="container">
+            <h2 class="section-title wow fadeInUp">Resume</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="resume-title">
+                        <h3>Education</h3>
+                    </div>
+                    <div class="resume">
+                        <ul class="timeline">
+                            <li>
+                                <div class="posted-date">
+                                    <span class="month">2008</span>
+                                </div>
+                                <!-- /posted-date -->
+
+                                <div class="timeline-panel wow fadeInUp">
+                                    <div class="timeline-content">
+                                        <div class="timeline-heading">
+                                            <h3>SCIENTIFIC BACCALAUREATE</h3>
+                                            <span>Syria-Damascus</span>
+                                        </div>
+                                        <!-- /timeline-heading -->
+
+                                        <div class="timeline-body">
+                                            <p>I have completed scientific baccalaureate degree<br> from Elieas Tohme school, Damascus, Syria with 91%.</p>
+                                        </div>
+                                        <!-- /timeline-body -->
+                                    </div>
+                                    <!-- /timeline-content -->
+                                </div>
+                                <!-- /timeline-panel -->
+                            </li>
+
+                            <li class="timeline-inverted">
+                                <div class="posted-date">
+                                    <span class="month">2009-2015</span>
+                                </div>
+                                <!-- /posted-date -->
+
+                                <div class="timeline-panel wow fadeInUp">
+                                    <div class="timeline-content">
+                                        <div class="timeline-heading">
+                                            <h3>License in fine arts</h3>
+                                            <span><a href="http://damascusuniversity.edu.sy/finearts/" target="_blank">university of Damascus</a></span>
+                                        </div>
+                                        <!-- /timeline-heading -->
+
+                                        <div class="timeline-body">
+                                            <p>I have studied the fine arts for four years in the university of Damascus and specialized in painting.<br> I am influenced by the abstract expressionism movement. </p>
+                                        </div>
+                                        <!-- /timeline-body -->
+                                    </div>
+                                    <!-- /timeline-content -->
+                                </div>
+                                <!-- /timeline-panel -->
+                            </li>
+
+                            <li>
+                                <div class="posted-date">
+                                    <span class="month">2019-2020</span>
+                                </div>
+                                <!-- /posted-date -->
+
+                                <div class="timeline-panel wow fadeInUp">
+                                    <div class="timeline-content">
+                                        <div class="timeline-heading">
+                                            <h3><a href="http://www.humanites-numeriques.univ-paris8.fr/-LP-DesignWebMobile-" target="_blank">Lecense pro Design Web Mobile</a></h3>
+                                            <span><a href="https://www.univ-paris8.fr/" target="_blank">Univérsité Paris 8</a></span>
+                                        </div>
+                                        <!-- /timeline-heading -->
+
+                                        <div class="timeline-body">
+                                            <p>I am studying the web design in the 8th university of Paris,<br>for one year and i finish my studies in 2020. </p>
+                                        </div>
+                                        <!-- /timeline-body -->
+                                    </div>
+                                    <!-- /timeline-content -->
+                                </div>
+                                <!-- /timeline-panel -->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="resume-title">
+                        <h3>Experience</h3>
+                    </div>
+                    <div class="resume">
+                        <ul class="timeline">
+                            <li class="timeline-inverted">
+                                <div class="posted-date">
+                                    <span class="month">2011-2013</span>
+                                </div>
+                                <!-- /posted-date -->
+
+                                <div class="timeline-panel wow fadeInUp">
+                                    <div class="timeline-content">
+                                        <div class="timeline-heading">
+                                            <h3>teacher of arts</h3>
+                                            <span>Damascus - Syria</span>
+                                        </div>
+                                        <!-- /timeline-heading -->
+
+                                        <div class="timeline-body">
+                                            <p>I have worked with the syrian children who were forced to quit thier cities, we were able to organize a lot of classes to give the children a little hope for a normal life. </p>
+                                        </div>
+                                        <!-- /timeline-body -->
+                                    </div>
+                                    <!-- /timeline-content -->
+                                </div>
+                                <!-- /timeline-panel -->
+                            </li>
+
+                            <li>
+                                <div class="posted-date">
+                                    <span class="month">2015-2019</span>
+                                </div>
+                                <!-- /posted-date -->
+
+                                <div class="timeline-panel wow fadeInUp">
+                                    <div class="timeline-content">
+                                        <div class="timeline-heading">
+                                            <h3>freelancer Artist</h3>
+                                            <span>Damascus - Berlin - Paris</span>
+                                        </div>
+                                        <!-- /timeline-heading -->
+
+                                        <div class="timeline-body">
+                                            <p>I am used to work with three kind of materials (acrilic , oil , carbon), you find some of my works in the works section.</p>
+                                        </div>
+                                        <!-- /timeline-body -->
+                                    </div>
+                                    <!-- /timeline-content -->
+                                </div>
+                                <!-- /timeline-panel -->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- End Resume Section -->
+
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section section-padding">
+        <div class="container">
+            <h2 class="section-title wow fadeInUp">Skills</h2>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="skill-progress">
+                        <div class="skill-title">
+                            <h3>Photoshop</h3>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><span>90%</span>
+                            </div>
+                        </div>
+                        <!-- /.progress -->
+                    </div>
+                    <!-- /.skill-progress -->
+
+                    <div class="skill-progress">
+                        <div class="skill-title">
+                            <h3>Illustrator</h3>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"><span>80%</span>
+                            </div>
+                        </div>
+                        <!-- /.progress -->
+                    </div>
+                    <!-- /.skill-progress -->
+                    <div class="skill-progress">
+                        <div class="skill-title">
+                            <h3>Adobe XD</h3>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"><span>70%</span>
+                            </div>
+                        </div>
+                        <!-- /.progress -->
+                    </div>
+                    <!-- /.skill-progress -->
+                </div>
+                <!-- /.col-md-6 -->
+
+                <div class="col-md-6">
+                    <div class="skill-progress">
+                        <div class="skill-title">
+                            <h3>Indesign</h3>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"><span>65%</span>
+                            </div>
+                        </div>
+                        <!-- /.progress -->
+                    </div>
+                    <!-- /.skill-progress -->
+                    <div class="skill-progress">
+                        <div class="skill-title">
+                            <h3>VS Code</h3>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"><span>80%</span>
+                            </div>
+                        </div>
+                        <!-- /.progress -->
+                    </div>
+                    <!-- /.skill-progress -->
+                    <div class="skill-progress">
+                        <div class="skill-title">
+                            <h3>Sketch Up</h3>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar six-sec-ease-in-out" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><span>75%</span>
+                            </div>
+                        </div>
+                        <!-- /.progress -->
+                    </div>
+                    <!-- /.skill-progress -->
+                </div>
+                <!-- /.col-md-6 -->
+            </div>
+            <!-- /.row -->
+
+            <div class="skill-chart text-center">
+                <h3>More skills</h3>
+            </div>
+
+            <div class="row more-skill text-center">
+                <div class="col-xs-12 col-sm-4 col-md-2">
+                    <div class="chart" data-percent="75" data-color="e74c3c">
+                        <span class="percent"></span>
+                        <div class="chart-text">
+                            <span>HTML</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-2">
+                    <div class="chart" data-percent="65" data-color="2ecc71">
+                        <span class="percent"></span>
+                        <div class="chart-text">
+                            <span>CSS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-2">
+                    <div class="chart" data-percent="45" data-color="3498db">
+                        <span class="percent"></span>
+                        <div class="chart-text">
+                            <span>PHP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-2">
+                    <div class="chart" data-percent="35" data-color="3498db">
+                        <span class="percent"></span>
+                        <div class="chart-text">
+                            <span>Java Script</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-2">
+                    <div class="chart" data-percent="60" data-color="3498db">
+                        <span class="percent"></span>
+                        <div class="chart-text">
+                            <span>SQL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-2">
+                    <div class="chart" data-percent="60" data-color="3498db">
+                        <span class="percent"></span>
+                        <div class="chart-text">
+                            <span>Office</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- End Skills Section -->
+
+
+    <!-- Works Section -->
+    <section id="works" class="works-section section-padding">
+        <div class="container">
+            <h2 class="section-title wow fadeInUp">Works</h2>
+
+
+
+            <div class="row">
+                <div id="grid">
+                    <div class="portfolio-item col-xs-12 col-sm-4 col-md-3" data-groups='["all", "identety", "interface"]'>
+                        <div class="portfolio-bg">
+                            <div class="portfolio">
+                                <div class="tt-overlay"></div>
+                                <div class="links">
+                                    <a class="image-link" href="assets/images/works/portfolio-1.jpg"><i class="fa fa-search-plus"></i></a>
+                                    <a href="#"><i class="fa fa-link"></i></a>
+                                </div>
+                                <!-- /.links -->
+                                <img src="assets/images/works/portfolio-1.jpg" alt="image">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Title</h3>
+                                </div>
+                                <!-- /.portfolio-info -->
+                            </div>
+                            <!-- /.portfolio -->
+                        </div>
+                        <!-- /.portfolio-bg -->
+                    </div>
+                    <!-- /.portfolio-item -->
+
+
+                    <div class="portfolio-item col-xs-12 col-sm-4 col-md-3" data-groups='["all", "identety", "web"]'>
+                        <div class="portfolio-bg">
+                            <div class="portfolio">
+                                <div class="tt-overlay"></div>
+                                <div class="links">
+                                    <a class="image-link" href="assets/images/works/portfolio-2.jpg"><i class="fa fa-search-plus"></i></a>
+                                    <a href="#"><i class="fa fa-link"></i></a>
+                                </div>
+                                <!-- /.links -->
+                                <img src="assets/images/works/portfolio-2.jpg" alt="image">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Title</h3>
+                                </div>
+                                <!-- /.portfolio-info -->
+                            </div>
+                            <!-- /.portfolio -->
+                        </div>
+                        <!-- /.portfolio-bg -->
+                    </div>
+                    <!-- /.portfolio-item -->
+                    <div class="portfolio-item col-xs-12 col-sm-4 col-md-3" data-groups='["all", "interface"]'>
+                        <div class="portfolio-bg">
+                            <div class="portfolio">
+                                <div class="tt-overlay"></div>
+                                <div class="links">
+                                    <a class="image-link" href="assets/images/works/portfolio-3.jpg"><i class="fa fa-search-plus"></i></a>
+                                    <a href="#"><i class="fa fa-link"></i></a>
+                                </div>
+                                <!-- /.links -->
+                                <img src="assets/images/works/portfolio-3.jpg" alt="image">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Title</h3>
+                                </div>
+                                <!-- /.portfolio-info -->
+                            </div>
+                            <!-- /.portfolio -->
+                        </div>
+                        <!-- /.portfolio-bg -->
+                    </div>
+                    <!-- /.portfolio-item -->
+                    <div class="portfolio-item col-xs-12 col-sm-4 col-md-3" data-groups='["all", "identety", "design"]'>
+                        <div class="portfolio-bg">
+                            <div class="portfolio">
+                                <div class="tt-overlay"></div>
+                                <div class="links">
+                                    <a class="image-link" href="assets/images/works/portfolio-4.jpg"><i class="fa fa-search-plus"></i></a>
+                                    <a href="#"><i class="fa fa-link"></i></a>
+                                </div>
+                                <!-- /.links -->
+                                <img src="assets/images/works/portfolio-4.jpg" alt="image">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Title</h3>
+                                </div>
+                                <!-- /.portfolio-info -->
+                            </div>
+                            <!-- /.portfolio -->
+                        </div>
+                        <!-- /.portfolio-bg -->
+                    </div>
+                    <!-- /.portfolio-item -->
+                    <div class="portfolio-item col-xs-12 col-sm-4 col-md-3" data-groups='["all", "identety", "design"]'>
+                        <div class="portfolio-bg">
+                            <div class="portfolio">
+                                <div class="tt-overlay"></div>
+                                <div class="links">
+                                    <a class="image-link" href="assets/images/works/portfolio-5.jpg"><i class="fa fa-search-plus"></i></a>
+                                    <a href="#"><i class="fa fa-link"></i></a>
+                                </div>
+                                <!-- /.links -->
+                                <img src="assets/images/works/portfolio-5.jpg" alt="image">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Title</h3>
+                                </div>
+                                <!-- /.portfolio-info -->
+                            </div>
+                            <!-- /.portfolio -->
+                        </div>
+                        <!-- /.portfolio-bg -->
+                    </div>
+                    <!-- /.portfolio-item -->
+                    <div class="portfolio-item col-xs-12 col-sm-4 col-md-3" data-groups='["all", "identety", "design"]'>
+                        <div class="portfolio-bg">
+                            <div class="portfolio">
+                                <div class="tt-overlay"></div>
+                                <div class="links">
+                                    <a class="image-link" href="assets/images/works/portfolio-6.jpg"><i class="fa fa-search-plus"></i></a>
+                                    <a href="#"><i class="fa fa-link"></i></a>
+                                </div>
+                                <!-- /.links -->
+                                <img src="assets/images/works/portfolio-6.jpg" alt="image">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Title</h3>
+                                </div>
+                                <!-- /.portfolio-info -->
+                            </div>
+                            <!-- /.portfolio -->
+                        </div>
+                        <!-- /.portfolio-bg -->
+                    </div>
+                    <!-- /.portfolio-item -->
+                    <div class="portfolio-item col-xs-12 col-sm-4 col-md-3" data-groups='["all", "identety", "web"]'>
+                        <div class="portfolio-bg">
+                            <div class="portfolio">
+                                <div class="tt-overlay"></div>
+                                <div class="links">
+                                    <a class="image-link" href="assets/images/works/portfolio-7.jpg"><i class="fa fa-search-plus"></i></a>
+                                    <a href="#"><i class="fa fa-link"></i></a>
+                                </div>
+                                <!-- /.links -->
+                                <img src="assets/images/works/portfolio-7.jpg" alt="image">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Title</h3>
+                                </div>
+                                <!-- /.portfolio-info -->
+                            </div>
+                            <!-- /.portfolio -->
+                        </div>
+                        <!-- /.portfolio-bg -->
+                    </div>
+                    <!-- /.portfolio-item -->
+                    <div class="portfolio-item col-xs-12 col-sm-4 col-md-3" data-groups='["all", "design"]'>
+                        <div class="portfolio-bg">
+                            <div class="portfolio">
+                                <div class="tt-overlay"></div>
+                                <div class="links">
+                                    <a class="image-link" href="assets/images/works/portfolio-8.jpg"><i class="fa fa-search-plus"></i></a>
+                                    <a href="#"><i class="fa fa-link"></i></a>
+                                </div>
+                                <!-- /.links -->
+                                <img src="assets/images/works/portfolio-8.jpg" alt="image">
+                                <div class="portfolio-info">
+                                    <h3>Portfolio Title</h3>
+                                </div>
+                                <!-- /.portfolio-info -->
+                            </div>
+                            <!-- /.portfolio -->
+                        </div>
+                        <!-- /.portfolio-bg -->
+                    </div>
+                    <!-- /.portfolio-item -->
+                </div>
+                <!-- /#grid -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- End Works Section -->
+
+
+    <!-- Facts Section -->
+    <section id="facts" class="facts-section text-center" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2">
+        <div class="tt-overlay-bg">
+            <h3>Hobbies</h3>
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="count-wrap">
+                            <div class="col-sm-3 col-xs-6">
+                                <i class='fas fa-chess-knight'></i>
+
+                                <p>Chess</p>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                <i class="fa fa-futbol-o"></i>
+
+                                <p>Football</p>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                <i class="fa fa-book"></i>
+
+                                <p>Literature</p>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                <i class="fa fa-film"></i>
+
+                                <p>Cinema</p>
+                            </div>
+                        </div>
+                        <!-- /count-wrap -->
+                    </div>
+                    <!-- /.col-md-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        </div>
+    </section>
+    <!-- End Facts Section -->
+
+
+    <!-- Blog Section -->
+
+    <!-- End Blog Section -->
+
+
+    <!-- Hire Section -->
+
+    <!-- End Hire Section -->
+
+
+
+    <!-- Contact Section -->
+
+    <!-- End Contact Section -->
+
+
+    <!-- Footer Section -->
+    <!-- <footer class="footer-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright text-center">
+                        <p>&copy; TrendyTheme 2019. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer> -->
+    <!-- End Footer Section -->
+
+
+    <!-- Scroll-up -->
+    <div class="scroll-up">
+        <a href="#home"><i class="fa fa-angle-up"></i></a>
+    </div>
+
+    <!-- Javascript files -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.stellar.min.js"></script>
+    <script src="assets/js/jquery.sticky.js"></script>
+    <script src="assets/js/smoothscroll.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/jquery.countTo.js"></script>
+    <script src="assets/js/jquery.inview.min.js"></script>
+    <script src="assets/js/jquery.easypiechart.js"></script>
+    <script src="assets/js/jquery.shuffle.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script>
+    <script src="assets/js/jquery.fitvids.js"></script>
+    <script src="assets/js/scripts.js?v=2"></script>
 
 </body>
 
