@@ -808,7 +808,7 @@ fieldset {
 .mapid{
     width: 120px;
     height: 120px;
-    position: absolute;
+    position: right;
     bottom: 50px;
     right: 10px;
 }
