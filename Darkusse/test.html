@@ -49,7 +49,7 @@ var dataPhoto, dataForm;
                 
             cards.append("img")
                    .attr('class','card-img-top')
-                    .attr('src',function(d) {if(d['Votre nom']=="EZZIKI") { 
+                    .attr('src',function(d) {if(d['N° étudiant']==19010729) { 
                         //merci à https://davidwalsh.name/query-string-javascript
                         // https://developers.google.com/web/updates/2016/01/urlsearchparams?hl=en
                         let url = new URL(d['Votre photo']);

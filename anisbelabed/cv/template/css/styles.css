@@ -132,7 +132,6 @@ h2 {
 .header .navbar {
 	margin: 0;
 	background: transparent !important;
-	
 }
 .social a:hover {
 	color: rgb(20, 200, 255);
@@ -235,7 +234,6 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 /*----Nav ----*/
 .header .navbar-brand {
 	float: left;
-	padding: 16px 15px;
 	line-height: 18px;
 	height: 50px;
 	/*color:#FF7A00;*/;
@@ -264,9 +262,13 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 .navbar-nav > li:hover > a {
 	color: #fff;
 }
+/*menu nav bar */ 
 .header .navbar-nav > li > a {
 	padding: 25px 18px;
 	text-transform: none;
+	font: 16px 'opensans-bold', sans-serif;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
 }
 .page-section {
 	width: 100%;
@@ -319,12 +321,7 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	left: 0px;
 	right: 0px;
 }
-.banner-content h2 {
-	color: #fff;
-	font-size: 3.5em;
-	margin: 2% 0 30px;
-	line-height: 1.2em;
-}
+
 .banner-content p {
 	font-size: 1.6em;
 	font-weight: normal;
