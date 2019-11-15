@@ -277,76 +277,13 @@
     
     <!-- contact -->
     <div class="section" id="contact">
-        <div id="mapid" style="widows: 640px; height: 480px;" class="img-responsive" alt="" align="right">
-            <script>
-            window.onload = function (){
-                console.log('carte chargé');
-              
-               
-              
-               var mapboxUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}'
-               
-                var mapboxAttribution ='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>' 
-
-                 var mapboxtokken = 'pk.eyJ1IjoiZ2JlbmNoYWJhIiwiYSI6ImNrMnl4eG5vdzBhZHAzbW1tcjBqM2NwdDUifQ.AHssphbpuPjmvPAsMieRZg'
-              
-              
-               var tilestreets = L.tileLayer( mapboxUrl, {
-                     attribution: mapboxAttribution ,
-                     maxZoom: 18,
-                    id: 'mapbox.streets',
-                  accessToken: mapboxtokken }) 
-                  
-
-
-                   var tileSattelite = L.tileLayer( mapboxUrl, {
-                     attribution: mapboxAttribution ,
-                     maxZoom: 18,
-                    id: 'mapbox.sattelite',
-                  accessToken: mapboxtokken }) 
-                   
-                
-
-                   var mymap = L.map('mapid',{ 
-                          center: [48.780577, 2.212423],
-                          zoom: 13,
-                          layers : [tilestreets,tileSattelite]
-                        });
-              
-                        var baseMaps = {
-                            "rues": tilestreets,
-                             "Sattelite": tileSattelite
-                             };
-
-
-                             L.control.layers(baseMaps).addTo(mymap);
-
-        var marker = L.marker([48.780577, 2.212423]).addTo(mymap);
-        marker.bindPopup("<b>Bonjour!</b><br>Je suis la !.");
-
-
-
-
-
-        var popup = L.popup();
-
-           function onMapClick(e) {
-                      popup
-                     .setLatLng(e.latlng)
-                     .setContent("You clicked the map at " + e.latlng.toString())
-                     .openOn(mymap);
-}
-
-mymap.on('click', onMapClick);
-            }
-            </script>
-           
-        </div>
+        
         <div class="container">
             <div class="col-md-12">
                 <h4>04</h4>
                 <h1 class="size-50">Contactez moi </h1>
                 <div class="h-50"></div>
+                
             </div>
             <div class="col-md-4" data-aos="fade-up">
 
@@ -356,7 +293,7 @@ mymap.on('click', onMapClick);
                 <h3>Email</h3>
                 <p><a href="mailto:gayarainbow@gmail.com">gayarainbow@gmail.com</a> </p>
 
-                <h3>reseaux sociaux </h3>
+                <br><h3>reseaux sociaux </h3>
 
                 <ul class="social">
                     <li><a href="https://www.facebook.com/gaya.benchaba" target="-blank"><i class="ion-social-facebook"></i></a></li>
@@ -366,9 +303,76 @@ mymap.on('click', onMapClick);
                 </ul>
                 <div class="clearfix"></div>
                 <div class="h-50"></div>
+                <div id="mapid" style="widows: 340px; height: 280px;" class="img-responsive" alt="" align="right">
+                        <script>
+                        window.onload = function (){
+                            console.log('carte chargé');
+                          
+                           
+                          
+                           var mapboxUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}'
+                           
+                            var mapboxAttribution ='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>' 
+            
+                             var mapboxtokken = 'pk.eyJ1IjoiZ2JlbmNoYWJhIiwiYSI6ImNrMnl4eG5vdzBhZHAzbW1tcjBqM2NwdDUifQ.AHssphbpuPjmvPAsMieRZg'
+                          
+                          
+                           var tilestreets = L.tileLayer( mapboxUrl, {
+                                 attribution: mapboxAttribution ,
+                                 maxZoom: 18,
+                                id: 'mapbox.streets',
+                              accessToken: mapboxtokken }) 
+                              
+            
+            
+                               var tileSattelite = L.tileLayer( mapboxUrl, {
+                                 attribution: mapboxAttribution ,
+                                 maxZoom: 18,
+                                id: 'mapbox.sattelite',
+                              accessToken: mapboxtokken }) 
+                               
+                            
+            
+                               var mymap = L.map('mapid',{ 
+                                      center: [48.780577, 2.212423],
+                                      zoom: 13,
+                                      layers : [tilestreets,tileSattelite]
+                                    });
+                          
+                                    var baseMaps = {
+                                        "rues": tilestreets,
+                                         "Sattelite": tileSattelite
+                                         };
+            
+            
+                                         L.control.layers(baseMaps).addTo(mymap);
+            
+                    var marker = L.marker([48.780577, 2.212423]).addTo(mymap);
+                    marker.bindPopup("<b>Bonjour!</b><br>Je suis la !.");
+            
+            
+            
+            
+            
+                    var popup = L.popup();
+            
+                       function onMapClick(e) {
+                                  popup
+                                 .setLatLng(e.latlng)
+                                 .setContent("You clicked the map at " + e.latlng.toString())
+                                 .openOn(mymap);
+            }
+            
+            mymap.on('click', onMapClick);
+                        }
+                        </script>
+                       
+                    </div>
             </div>
             
         </div>
+        
+
     </div>
   
 
