@@ -9,7 +9,7 @@ Author URI: http://webthemez.com/
 	font-family: 'Open Sans', sans-serif;
 }
 body {
-	font-size: 14px;
+	font-size: 16px;
 	font-family: 'Open Sans', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	background: #fff;
@@ -387,10 +387,11 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 .secPad {
 	padding: 60px 0;
 }
-/*Intro Content*/
+
+/*Intro Container*/
 #introText {
 	padding: 50px 0;
-	background: #FF7A00;
+	background:rgb(56, 54, 54); 
 }
 #introText h1 {
 	font-size: 40px;
@@ -400,9 +401,11 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	color: #fff;
 }
 #introText p {
-	color: #FFD2A8;
+	color: white;
 	font-size: 16px;
 }
+/* ---- fin intro container -----*/
+
 #aboutUs{
 padding-top:60px;	
 	}
@@ -434,7 +437,7 @@ padding-top:60px;
 /*parlex*/
 .bg-parlex {
 	padding-top: 0px;
-	background-image: url('../images/banner-bg.jpg');
+	background-image: url('../images/cover2.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -443,9 +446,6 @@ padding-top:60px;
 	padding: 60px 20px;
 	background-color: rgba(0, 0, 0, 0.37);
 	color: #FDFDFD !important;
-}
-.parlex-back h2{
-	margin:0 20px;
 }
 /*Skills*/
 .skilltitle {
@@ -464,6 +464,24 @@ padding-top:60px;
 	background-color: rgb(0, 187, 255) rgb(0, 187, 255) transparent transparent;
 }
 /*Skills*/
+	
+/* ---------------------------------
+8. EDUCATION SECTION
+--------------------------------- */
+
+.education-wrapper{ position: relative; }
+
+.education-wrapper:after{ content:''; position: absolute; top: 8px; bottom: 0; left: -51px;
+	width: 2px; background: #ccc; }
+
+.education-wrapper .education{ position: relative; }
+
+.education-wrapper .education:after{ content:''; position: absolute; top: 8px; left: -58px; width: 16px; 
+	height: 12px; border-radius: 10px; z-index: 1;
+	box-shadow: 0 0 0 8px rgba(255,171,0, .4); background: #FFAB00; }
+	
+	
+/*-----------------------*/
 .chart {
 	position: relative;
 	display: inline-block;
@@ -516,67 +534,11 @@ min-height:200px;
 .chart-text h4 { 
 	font-size: 23px;
 }
-/*Formation*/
-#experience{
-	background: #F8F8F8;
-}
-.experience-details .col-md-6{
-	margin-bottom: 40px;
-} 
-.experience-details h4 {
-	margin: 15px 0px 2px;
-	font-size: 20px;
-}
-/*.experience-details h5 {
-	margin: 3px 0px;
-	font-size: 14px;
-}
-*/
-.experience-details .icon-block {
-	float: left;
-	margin-right: 20px;
-}
-.experience-details .icon-block i {
-	font-size: 60px;
-	color: #FF7A00;
-	margin: 8px 0 0;
-}
-.experience-details span {
-	font-size: 14px;
-	color: #000;
-}
+
 .progress-bar {
 	background-color: #FF7A00;
 }
-/* Services
-    -------------------------------------------------*/
-.grid .text-content {
-	padding-left: 35%;
-}
-.grid .text-content {
-	display: block;
-	padding-left: 19%;
-	padding-right: 8%;
-}
-.grid .grid-item {
-}
-.grid .text-content h5 {
-	font-weight: bold;
-}
-.grid .grid-item .item-content {
-	display: block;
-	outline: none;
-	text-decoration: none;
-	padding: 20px 0;
-}
-.item-content .fa {
-	position: absolute;
-	color: #646464;
-	font-size: 4.5em;
-	top: 36px;
-}
-/* Team
-    ---------------------------------------------------*/
+
 .team-member {
 	margin-bottom: 15px;
 }
