@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cartographie</title>
+    <title>Cartographie plugin leaflet-tilelayer-mask</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -19,6 +19,10 @@
         integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
         crossorigin=""></script>
 
+    <!---    Plugin 2 : leaflet-tilelayer-mask                       -->
+    <script src="leaflet-tilelayer-mask.js"></script>
+    <!--                                                             -->
+
     <style>
         #mapid {
             height: 600px;
@@ -27,34 +31,35 @@
 </head>
 
 <body>
-    <h1 class="text-center">Ma cartographie</h1>
+    <h1 class="text-center">Ma cartographie avec le plugin Leaflet Titelayer Mask</h1>
     <div class="container">
         <div id="mapid"></div>
     </div>
     <script>
-        /*--- Démonstration en cours de Samuel Szoniecky ---*/
-        var lat = 48.946538, lng = 2.363217;
-        var map = L.map('mapid').setView([lat, lng], 14);
+
+        /*---- Plugin 2 : leaflet-tilelayer-mask (v1.0) ---*/
+        var map = L.map("mapid", {
+            zoom: 16,
+            center: [35.6323, 139.768815],
+            maxZoom: 18,
+            minZoom: 15
+        });
+        map.zoomControl.setPosition("bottomright");
+        map.attributionControl.addAttribution("<a href='https://github.com/frogcat/leaflet-tilelayer-mask'>fork me on GitHub</a>");
         L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
             attribution: 'donn&eacute;es &copy; <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
             minZoom: 1,
             maxZoom: 20
         }).addTo(map);
-
-
-        var marker = L.marker([lat, lng]).addTo(map);
-        marker.bindPopup("<b>Quel marker ! </b>.").openPopup();
-
-        var myIcon = L.icon({
-            iconUrl: 'img/honore.jpg',
-            iconSize: [100, 100],
-            iconAnchor: [5, 5],
-            popupAnchor: [-3, -50],
-
+        var mask = L.tileLayer.mask('http://www.finds.jp/ws/tmc/1.0.0/Kanto_Rapid-900913-L/{z}/{x}/{y}.png', {
+            attribution: '<a href="http://habs.dc.affrc.go.jp/">NIAES, NARO</a>',
+            maskSize: 512,
+            maxZoom: 18,
+            maxNativeZoom: 17
+        }).addTo(map);
+        map.on("mousemove", function (e) {
+            mask.setCenter(e.containerPoint);
         });
-
-        var markerhonore = L.marker([(lat), (lng)], { icon: myIcon }).addTo(map);
-        markerhonore.bindPopup("<b>Je suis Honoré</b>.").openPopup();
 
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

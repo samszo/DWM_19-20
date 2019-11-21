@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cartographie</title>
+    <title>Cartographie plugin leaflet-side-by-side</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -18,7 +18,9 @@
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
         integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
         crossorigin=""></script>
-
+    <!---    Plugin 1 : leaflet-side-by-side                       -->
+    <script src="leaflet-side-by-side.js"></script>
+    <!---                                                            -->
     <style>
         #mapid {
             height: 600px;
@@ -27,34 +29,33 @@
 </head>
 
 <body>
-    <h1 class="text-center">Ma cartographie</h1>
+    <h1 class="text-center">Ma cartographie avec le plugin Leaflet Side by Side</h1>
     <div class="container">
         <div id="mapid"></div>
     </div>
     <script>
-        /*--- Démonstration en cours de Samuel Szoniecky ---*/
+        /*------------- Plugin 1 : leaflet-side-by-side --------------*/
+
         var lat = 48.946538, lng = 2.363217;
         var map = L.map('mapid').setView([lat, lng], 14);
-        L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+
+        var osmLayer = L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
             attribution: 'donn&eacute;es &copy; <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
             minZoom: 1,
             maxZoom: 20
         }).addTo(map);
 
+        var stamenLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png', {
+            attribution:
+                'Map tiles by <a href="http://stamen.com">Stamen Design<\/a>, ' +
+                '<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0<\/a> &mdash; ' +
+                'Map data {attribution.OpenStreetMap}',
+            minZoom: 1,
+            maxZoom: 16
+        }).addTo(map);
 
-        var marker = L.marker([lat, lng]).addTo(map);
-        marker.bindPopup("<b>Quel marker ! </b>.").openPopup();
+        L.control.sideBySide(stamenLayer, osmLayer).addTo(map);
 
-        var myIcon = L.icon({
-            iconUrl: 'img/honore.jpg',
-            iconSize: [100, 100],
-            iconAnchor: [5, 5],
-            popupAnchor: [-3, -50],
-
-        });
-
-        var markerhonore = L.marker([(lat), (lng)], { icon: myIcon }).addTo(map);
-        markerhonore.bindPopup("<b>Je suis Honoré</b>.").openPopup();
 
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
