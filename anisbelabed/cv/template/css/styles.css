@@ -88,7 +88,7 @@ a:hover {
 	margin: 30px 0;
 }
 .copyright {
-	color: #6D6D6D;
+	color: rgba(255, 255, 255, 0.568);
 	background: #000;
 	padding: 20px 0;
 	line-height: 34px; 
@@ -157,9 +157,19 @@ h2 {
         margin: 18px auto 24px auto;
         border-color: rgba(150, 150, 150, .1);
 }
-.navbar-inverse .navbar-toggle .icon-bar {
-/*background-color: #FF7A00;*/
+
+.aboutUs hr {
+
+		border: solid #ddd;
+		border-width: 1px 0 0;
+		clear: both;
+		margin: 11px 0 30px;
+		height: 0;
+		width: 70%;
+        margin: 18px auto 24px auto;
+        border-color: rgba(150, 150, 150, .1);
 }
+
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
 	background: #FF7A00;
 }
@@ -193,8 +203,7 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	margin-top: 50px;
 	border-bottom: 4px solid #FF7A00;
 }
-.carousel-inner > .item {
-}
+
 .carousel-caption {
 	padding: 0px;
 	bottom: 40%;
@@ -256,7 +265,7 @@ box-shadow: 0px 3px 4px 0px rgba(50, 50, 50, 0.38);
 	border-radius: 5px;
 }
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-	color: #FF7A00;
+	color: rgb(15, 83, 161);
 	background: none;
 }
 .navbar-nav > li:hover > a {
@@ -437,7 +446,7 @@ padding-top:60px;
 /*parlex*/
 .bg-parlex {
 	padding-top: 0px;
-	background-image: url('../images/cover2.jpg');
+	background-image: url('../images/cover1.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -717,9 +726,7 @@ nav#filter a {
 	color: #fff;
 	text-decoration: none;
 }
-hr {
-	border-color: #ddd;
-}
+
 body {
 	margin: 0;
 	font-family: Arial, sans-serif;

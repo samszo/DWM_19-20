@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cartographie</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <link rel="stylesheet" href="/src/leaflet-areaselect.css" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+ integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+ crossorigin=""></script>
+ <script src="/src/leaflet-areaselect.js"></script> 
+
+<style>
+    #mapid { height: 600px; }
+
+</style>
+
+</head>
+<body>
+
+        <div id="mapid"></div>
+        <script>
+        var lat = 48.9449133, lng = 2.3613169;
+        var mymap = L.map('mapid').setView([48.9449133, 2.3613169], 14);
+
+       var position = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiY2xvY2xvaCIsImEiOiJjanRwa3l6cTMwNTdyNDRyenE5bTNpOG5zIn0.P5bjNxk6Pb2zfV4zCyIT4w'
+}).addTo(mymap);
+
+var marker = L.marker([lat, lng]).addTo(mymap);
+
+var circle = L.circle([48.9449133,2.3613169], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(mymap);
+
+// Add it to the map
+var areaSelect = L.areaSelect({width:200, height:300});
+    areaSelect.addTo(map);
+    
+    // Read the bouding box
+    var bounds = areaSelect.getBounds();
+    
+    // Get a callback when the bounds change
+    areaSelect.on("change", function() {
+        console.log("Bounds:", this.getBounds());
+    });
+    
+    // Set the dimensions of the box
+    areaSelect.setDimensions({width: 500, height: 500})
+
+    // And to remove it do:
+    //areaSelect.remove();
+
+
+
+    var areaSelect = L.areaSelect({width:200, height:300, keepAspectRatio:true});
+
+
+
+        </script>
+
+    
+</body>
+</html>
