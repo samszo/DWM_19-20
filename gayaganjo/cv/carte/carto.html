@@ -14,10 +14,24 @@
     integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
     crossorigin=""></script>
 
+    <link rel="stylesheet" href="lib/leaflet/leaflet.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="libs/leaflet.ie.css" /><![endif]-->
+  <script src="lib/leaflet/leaflet.js"></script>
+  
+  <link rel="stylesheet" href="lib/opacity/Control.Opacity.css" />
+  <script src="lib/opacity/Control.Opacity.js"></script>
+      
+  
+  <script src="lib/jquery/jquery-1.9.1.js"></script>
+  <script src="lib/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+  <link rel="stylesheet" href="lib/jquery/jquery-ui-1.10.3.custom.min.css" />
+  
 
 </head>
 <body>
-    <div id="mapid"  class="img-responsive" alt="" >
+   
+  
+  <div id="mapid"  class="img-responsive" alt="" >
        <style>
        #mapid {
         width: 340px; 
@@ -29,6 +43,7 @@
         window.onload = function (){
             console.log('carte chargé');
           
+            
            
           
            var mapboxUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}'
@@ -86,8 +101,21 @@
 
 mymap.on('click', onMapClick);
         }
+        
         </script>
-       
+       <script>
+           var higherOpacity = new L.Control.higherOpacity();
+map.addControl(higherOpacity);
+var lowerOpacity = new L.Control.lowerOpacity();
+map.addControl(lowerOpacity);
+var opacitySlider = new L.Control.opacitySlider();
+map.addControl(opacitySlider);
+higherOpacity.setOpacityLayer(tileSattelite);
+
+var opacitySlider = new L.Control.opacitySlider();
+map.addControl(opacitySlider);
+opacitySlider.setOpacityLayer(tileSattelite);
+       </script>
     </div>
 
 
