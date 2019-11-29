@@ -100,11 +100,7 @@
 }
 
 mymap.on('click', onMapClick);
-        }
-        
-        </script>
-       <script>
-           var higherOpacity = new L.Control.higherOpacity();
+var higherOpacity = new L.Control.higherOpacity();
 mymap.addControl(higherOpacity);
 var lowerOpacity = new L.Control.lowerOpacity();
 mymap.addControl(lowerOpacity);
@@ -115,6 +111,11 @@ higherOpacity.setOpacityLayer(tileSattelite);
 var opacitySlider = new L.Control.opacitySlider();
 mymap.addControl(opacitySlider);
 opacitySlider.setOpacityLayer(tileSattelite);
+        }
+        
+        </script>
+       <script>
+           
        </script>
     </div>
 
