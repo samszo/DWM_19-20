@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>carto html</title>
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+
+	 <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="../src/leaflet-ruler.css" />
+    <script src="https://unpkg.com/leaflet@1.0.0/dist/leaflet.js"></script>
+    <script src="../src/leaflet-ruler.js"></script>
+   <style>
+   	#mapid { 
+   		 height: 250px; }
+   </style>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div id="mapid"></div>
+	<script type="text/javascript">
+	// creation carte londre (coordonnée londre attitude, ag ,alttitude)
+		var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+	//
+	var positron = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiZ2JlbmNoYWJhIiwiYSI6ImNrMnl4eG5vdzBhZHAzbW1tcjBqM2NwdDUifQ.AHssphbpuPjmvPAsMieRZg'
+}).addTo(mymap);
+
+var LeafIcon = L.Icon.extend({
+    options: {
+        shadowUrl: 'leaf-shadow.png',
+        iconSize:     [38, 95],
+        shadowSize:   [50, 64],
+        iconAnchor:   [22, 94],
+        shadowAnchor: [4, 62],
+        popupAnchor:  [-3, -76]
+    }
+});
+var greenIcon = new LeafIcon({iconUrl: 'leaf-green.png'}),
+    redIcon = new LeafIcon({iconUrl: 'leaf-red.png'}),
+    orangeIcon = new LeafIcon({iconUrl: 'leaf-orange.png'});
+
+L.marker([51.5, -0.09], {icon: greenIcon}).addTo(mymap).bindPopup("I am a green leaf.");
+L.marker([51.495, -0.083], {icon: redIcon}).addTo(mymap).bindPopup("I am a red leaf.");
+L.marker([51.49, -0.1], {icon: orangeIcon}).addTo(mymap).bindPopup("I am an orange leaf.");
+
+ L.control.ruler().addTo(mymap);
+
+	</script>
+</body>
+	</html>
