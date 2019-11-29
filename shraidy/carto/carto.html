@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cartographique</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+    <script src="leaflet-areaselect.js"></script>
+    <script src="leaflet-heat.js"></script>
+    <link rel="stylesheet" href="leaflet-areaselect.css">
+    <script src="leaflet-control-boxzoom.js"></script>
+    <link rel="stylesheet" href="leaflet-control-boxzoom.css" />
+    <style>
+        #mapid {
+            height: 700px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mapid"></div>
+    <script>
+        var lat = 48.8526,
+            lng = 2.351058;
+        var map = L.map('mapid').setView([lat, lng], 11);
+
+        L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+            attribution: 'donn&eacute;es &copy; <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+            minZoom: 1,
+            maxZoom: 20
+        }).addTo(map);
+
+        var marker = L.marker([lat, lng]).addTo(map);
+        marker.bindPopup("<b>Paris centre.</b>");
+        var iconPapi = L.icon({
+            iconUrl: 'myicon.png',
+            iconSize: [50, 50],
+            iconAnchor: [50, 50],
+            popupAnchor: [-3, -50],
+        });
+        var mkrPapi = L.marker([48.803806, 2.61144], {
+            icon: iconPapi
+        }).addTo(map);
+        mkrPapi.bindPopup("<b> J'habite ici !</b>");
+
+        //////////////////////
+        // Add it to the map
+        var areaSelect = L.areaSelect({
+            width: 200,
+            height: 300
+        });
+        areaSelect.addTo(map);
+
+        // Read the bouding box
+        var bounds = areaSelect.getBounds();
+
+        // Get a callback when the bounds change
+        areaSelect.on("change", function() {
+            console.log("Bounds:", this.getBounds());
+        });
+
+        // Set the dimensions of the box
+        areaSelect.setDimensions({
+            width: 500,
+            height: 500
+        })
+
+        // And to remove it do:
+        //areaSelect.remove();
+
+
+        ///////////////////////
+        L.Control.boxzoom({
+            position: 'topleft'
+        }).addTo(map);
+    </script>
+
+</body>
+
+</html>

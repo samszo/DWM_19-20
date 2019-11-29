@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin=""></script>
+
+    <link rel="stylesheet" href="lib/leaflet/leaflet.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="libs/leaflet.ie.css" /><![endif]-->
+  <script src="lib/leaflet/leaflet.js"></script>
+  
+  <link rel="stylesheet" href="lib/opacity/Control.Opacity.css" />
+  <script src="lib/opacity/Control.Opacity.js"></script>
+      
+  
+  <script src="lib/jquery/jquery-1.9.1.js"></script>
+  <script src="lib/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+  <link rel="stylesheet" href="lib/jquery/jquery-ui-1.10.3.custom.min.css" />
+  
+
+</head>
+<body>
+   
+  
+  <div id="mapid"  class="img-responsive" alt="" >
+       <style>
+       #mapid {
+        width: 340px; 
+        height: 280px;
+        position: absolute;
+       }
+       </style>
+       <script>
+        window.onload = function (){
+            console.log('carte chargé');
+          
+            
+           
+          
+           var mapboxUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}'
+           
+            var mapboxAttribution ='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>' 
+
+             var mapboxtokken = 'pk.eyJ1IjoiZ2JlbmNoYWJhIiwiYSI6ImNrMnl4eG5vdzBhZHAzbW1tcjBqM2NwdDUifQ.AHssphbpuPjmvPAsMieRZg'
+          
+          
+           var tilestreets = L.tileLayer( mapboxUrl, {
+                 attribution: mapboxAttribution ,
+                 maxZoom: 18,
+                id: 'mapbox.streets',
+              accessToken: mapboxtokken }) 
+              
+
+
+               var tileSattelite = L.tileLayer( mapboxUrl, {
+                 attribution: mapboxAttribution ,
+                 maxZoom: 18,
+                id: 'mapbox.sattelite',
+              accessToken: mapboxtokken }) 
+               
+            
+
+               var mymap = L.map('mapid',{ 
+                      center: [48.780577, 2.212423],
+                      zoom: 13,
+                      layers : [tilestreets,tileSattelite]
+                    });
+          
+                    var baseMaps = {
+                        "rues": tilestreets,
+                         "Sattelite": tileSattelite
+                         };
+
+
+                         L.control.layers(baseMaps).addTo(mymap);
+
+    var marker = L.marker([48.780577, 2.212423]).addTo(mymap);
+    marker.bindPopup("<b>Bonjour!</b><br>Je suis la !.");
+
+
+
+
+
+    var popup = L.popup();
+
+       function onMapClick(e) {
+                  popup
+                 .setLatLng(e.latlng)
+                 .setContent("You clicked the map at " + e.latlng.toString())
+                 .openOn(mymap);
+}
+
+mymap.on('click', onMapClick);
+        }
+        
+        </script>
+       <script>
+           var higherOpacity = new L.Control.higherOpacity();
+map.addControl(higherOpacity);
+var lowerOpacity = new L.Control.lowerOpacity();
+map.addControl(lowerOpacity);
+var opacitySlider = new L.Control.opacitySlider();
+map.addControl(opacitySlider);
+higherOpacity.setOpacityLayer(tileSattelite);
+
+var opacitySlider = new L.Control.opacitySlider();
+map.addControl(opacitySlider);
+opacitySlider.setOpacityLayer(tileSattelite);
+       </script>
+    </div>
+
+
+</body>
+</html>

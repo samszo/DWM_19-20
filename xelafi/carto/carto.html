@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cartoraphie</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin="">
+    </script>
+    <link  rel="stylesheet" href="leaflet.css" />
+    <script src="leaflet.js"> </script>
+    <script src="leaflet-tilelayer-colorfilter.min.js"> </script>
+    <script src="leaflet.js"></script>
+    <script src="leaflet.control.detaillevel.js"></script>
+    <script src="leaflet-side-by-side-side.js"></script>
+    <LINK rel="stylesheet" href="carto.css">
+
+</head>
+<body>
+    <div id="mapid">
+
+    </div>
+    <script>
+
+        
+        var mymap = L.map('mapid').setView([48.9449133, 2.3613169], 15);
+
+      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiZ2JlbmNoYWJhIiwiYSI6ImNrMnl4eG5vdzBhZHAzbW1tcjBqM2NwdDUifQ.AHssphbpuPjmvPAsMieRZg'
+}).addTo(mymap);
+
+
+
+var marker = L.marker([48.9448837, 2.3633311]).addTo(mymap);
+marker.bindPopup("IUT PARIS 8");
+var circle = L.circle([48.9459837, 2.3543311], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 300
+}).addTo(mymap);
+
+var polygon = L.polygon([
+    [48.9444599, 2.3608179,18],
+    [48.9418886, 2.3652417],
+    [48.9421739, 2.3604826]
+    
+]).addTo(mymap);
+
+let map = L.map('mapid');
+
+let points = [[48.9444599, 2.3608179,18], [48.9418886, 2.3652417], [48.9421739, 2.3604826]],
+    options = {
+        speed: 100,
+        layersCount: 1,
+        density: 1,
+        size: 10,
+        color: 'Oxffffff',
+        opacity: 1
+    },
+    snow = L.snow(points, options).addTo(map);
+
+
+    
+    </script>
+</body>
+</html>
