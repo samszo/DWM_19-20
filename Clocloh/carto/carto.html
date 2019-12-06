@@ -9,64 +9,94 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin=""/>
-    <link rel="stylesheet" href="/src/leaflet-areaselect.css" />
+<link rel="stylesheet" href="boxzoom/dist/leaflet-control-boxzoom.css" />
 
+    
     <!-- Make sure you put this AFTER Leaflet's CSS -->
  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
  integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
  crossorigin=""></script>
- <script src="/src/leaflet-areaselect.js"></script> 
+ <script src="boxzoom/dist/leaflet-control-boxzoom.js"></script>
+
+ 
+
+
 
 <style>
-    #mapid { height: 600px; }
+    #map { height: 600px; }
 
 </style>
 
+<!-- plugin boxzoom enough styling to make a full-page map -->
+<style type="text/css">
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    html, body, #map {
+        height: 100%;
+    }
+    </style>
 </head>
-<body>
+<body onLoad="initMap();">
 
-        <div id="mapid"></div>
+    
+        
+        <div id="map"></div>
+
         <script>
+        function initMap() {    
         var lat = 48.9449133, lng = 2.3613169;
-        var mymap = L.map('mapid').setView([48.9449133, 2.3613169], 14);
+        var map = L.map('map').setView([48.9449133, 2.3613169], 14);
 
        var position = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoiY2xvY2xvaCIsImEiOiJjanRwa3l6cTMwNTdyNDRyenE5bTNpOG5zIn0.P5bjNxk6Pb2zfV4zCyIT4w'
-}).addTo(mymap);
+}).addTo(map);
 
-var marker = L.marker([lat, lng]).addTo(mymap);
+
+
+//Plugin1
+
+
+
+L.Control.boxzoom({
+                position:'topleft',
+            }).addTo(map);
+       
+            
+
+
+var marker = L.marker([lat, lng]).addTo(map);
 
 var circle = L.circle([48.9449133,2.3613169], {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,
     radius: 500
-}).addTo(mymap);
-
-// Add it to the map
-var areaSelect = L.areaSelect({width:200, height:300});
-    areaSelect.addTo(map);
-    
-    // Read the bouding box
-    var bounds = areaSelect.getBounds();
-    
-    // Get a callback when the bounds change
-    areaSelect.on("change", function() {
-        console.log("Bounds:", this.getBounds());
-    });
-    
-    // Set the dimensions of the box
-    areaSelect.setDimensions({width: 500, height: 500})
-
-    // And to remove it do:
-    //areaSelect.remove();
+}).addTo(map);
 
 
 
-    var areaSelect = L.areaSelect({width:200, height:300, keepAspectRatio:true});
+marker.bindPopup("<b>BONJOUR!</b><br>Je suis à Paris 8.").openPopup();
+circle.bindPopup("Je suis un cercle");
+
+
+var popup = L.popup();
+
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("Vous avez cliqué sur la map à " + e.latlng.toString())
+        .openOn(map);
+}
+
+map.on('click', onMapClick);
+
+}
+
 
 
 
