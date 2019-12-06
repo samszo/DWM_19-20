@@ -6,18 +6,17 @@
             Inclusion de la bibliothèque Leaflet et sa feuille de style.
             L'include du js pourrait aussi être fait a la fin du <body>
         -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"></script>
 
-    <!-- Une feuille de style éventuel -->
-    <link rel="stylesheet" href="style.css">
+  <!-- Une feuille de style éventuel -->
+  <link rel="stylesheet" href="style.css">
 
     <title>Tutoriel Leaflet OSM</title>
-
   
   </head>
 
@@ -28,7 +27,7 @@
     <script>
 
       var lat = 48.9449133, lng = 2.3613169; 
-        var carte = L.map('macarte').setView([48.9449133, 2.3613169], 12);
+        var carte = L.map('carte').setView([48.9449133, 2.3613169], 12);
 
        var position = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -37,12 +36,6 @@
     accessToken: 'pk.eyJ1IjoiY2xvY2xvaCIsImEiOiJjanRwa3l6cTMwNTdyNDRyenE5bTNpOG5zIn0.P5bjNxk6Pb2zfV4zCyIT4w'
 }).addTo(carte);
 
-
-
-
-
-
-      
       // Notre cluster
       var markers = L.markerClusterGroup();
 
