@@ -1,0 +1,3 @@
+Exercice 1:
+ecrire un code permettent d'afficher dans une carte votre position avec
+comme retour les coordoner Altitude et Longetude
