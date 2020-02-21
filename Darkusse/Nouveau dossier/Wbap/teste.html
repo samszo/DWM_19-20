@@ -1,0 +1,525 @@
+
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>The Differentiator</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  
+  <meta property="og:title" content="The Differentiator" />
+  <meta property="og:description" content="A simple tool to differentiate lesson objectives." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://byrdseed.com/images/differentiator.png" />
+  <meta property="og:site_name" content="Byrdseed.com" />
+  <meta property="og:url" content="http://Byrdseed.com/differentiator" />
+  <link rel="stylesheet" type="text/css" href="css/style.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<script src="js/libs/modernizr-2.5.3.min.js"></script>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+	<script src="js/libs/jquery-ui-1.8.22.custom.min.js"></script>
+  
+	<script src="js/underscore.js"></script>
+	<script src="js/backbone.js"></script>
+	<script src="js/handlebars.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/bootstrap.js"></script>
+		
+	<script type="text/x-handlebars-template" id="obj-template">
+	<p id="p-obj">
+		Les étudiants seront capables de 
+		<span id="ts_span">{{thinking_skill}}</span>
+		<span id="cm_span">
+		{{#ittr content_modifiers}}
+			<span id="cm{{i}}">{{word}}</span>
+		{{/ittr}}		
+		</span> 				
+		<span id="c_span">{{content}}</span>
+		{{r_glue}}
+		<span id="r_span">{{ resources }}</span>
+		{{ p_glue }}
+		<span id="p_span">
+		{{#commaList products}}
+		  {{word}}
+		{{/commaList}}
+		</span>
+		{{ g_glue }}	
+		<span id="g_span">{{ group_size }}</span>.
+		</span>			
+	</p>
+	</script>
+	
+	<script type="text/x-handlebars-template" id="edit-obj-template">
+	<form class="form-inline">
+	<p style="color:#666;">
+		Students will 
+		<input type="text"  value="{{thinking_skill}}" id="ts_edit"/>
+		{{#ittr content_modifiers}}
+		<span class="pair cm-pair" id="cm-pair-{{i}}">
+			<input type="text"  value="{{word}}" id="cm{{i}}"/>
+			{{#unless first}}
+				<a rel="nofollow" href="#" data-n="{{i}}" id="cm{{i}}_left" class="btn cm_left">
+					<i class="icon-arrow-left"></i> 
+				</a>	
+			{{/unless}}					
+			<a rel="nofollow" href="#" data-n="{{i}}" id="cm{{i}}_delete" class="btn btn-danger cm_delete">
+				<i class="icon-trash icon-white"></i> 
+			</a>
+			{{#unless last}}			
+				<a rel="nofollow" href="#" data-n="{{i}}" id="cm{{i}}_right" class="btn cm_right">
+					<i class="icon-arrow-right"></i> 
+				</a>								
+			{{/unless}}
+		</span>
+		{{/ittr}}
+		<input type="text"  value="{{ content }}" id="c_edit"/>
+		{{r_glue}}
+		<input type="text"  value="{{ resources }}" id="r_edit"/>		
+		
+		<input type="text" value="{{ p_glue }}" id="p_glue_edit"/>
+				
+		{{#commaList products}}
+			<span class="pair p-pair" id="p-pair-{{i}}">
+				<input type="text"  value="{{word}}" id="p{{i}}"/>
+				{{#unless first}}
+					<a rel="nofollow" href="#" data-n="{{i}}" id="p{{i}}_left" class="btn p_left">
+						<i class="icon-arrow-left"></i> 
+					</a>	
+				{{/unless}}					
+				<a rel="nofollow" href="#" data-n="{{i}}" id="p{{i}}_delete" class="btn btn-danger p_delete">
+					<i class="icon-trash icon-white"></i> 
+				</a>
+				{{#unless last}}			
+					<a rel="nofollow" href="#" data-n="{{i}}" id="p{{i}}_right" class="btn p_right">
+						<i class="icon-arrow-right"></i> 
+					</a>								
+				{{/unless}}
+			</span>
+		{{/commaList}}
+
+		{{g_glue}}
+		<input type="text"  value="{{ group_size }}" id="group_size_edit"/>		
+		</p>
+	</form>
+	<a rel="nofollow" href="#" style="color:white;" class="btn btn-large btn-primary pull-right" id="closeEdit">Close</a>
+	<div style="clear:both"></div>
+	</script>
+
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function() {
+			$("#twitter").click( function(){		
+				var url = encodeURI("http://www.byrdseed.com/differentiator");
+				var diff = "Teachers, create differentiated lesson objectives with The Differentiator!";
+				var text = encodeURI(diff);
+				var it = "http://twitter.com/share?via=ianabyrd&url=" + url + "&text=" + text + "&counturl=" + url + "&lang=en";		
+				window.location = it;
+				return false;								
+			});
+							
+			$('#myTab a').click(function (e) {
+				e.preventDefault();				
+			  	$(this).tab('show');
+				return false;			
+			});			
+			$('#myTab a:first').tab('show');			
+
+			$("#ts .innerTab li").click(function(e){	
+				e.preventDefault();						
+				obj.set({"thinking_skill": the($(e.currentTarget).text().toLowerCase())});
+				return false;
+			});
+
+			$("#cm .innerTab li").click(function(e){
+				e.preventDefault();
+				var cm_o = $('#cm_options input[type=radio]:checked').val();
+				var new_cm = $(e.currentTarget).text().toLowerCase();
+				var a = obj.getCM();	
+				if( a.length == 0 )
+				{
+					cm_o = 'a';	
+				}			
+				if(cm_o == 'a')
+				{
+					a.push(ofThe(new_cm));
+				}
+				else
+				{
+					a[a.length-1] = ofThe(new_cm);
+				}
+				obj.set({"content_modifiers": a });
+				obj.trigger("change_cm");				
+				return false;
+			});
+
+			$("#p .innerTab li").click(function(e){
+				e.preventDefault();				
+				var p_o = $('#p_options input[type=radio]:checked').val();				
+				var new_p = $(e.currentTarget).text().toLowerCase();
+				var a = obj.getP();
+				if( a.length == 0)
+				{
+					p_o = "a";
+				}
+				if(p_o == "a")
+				{
+					a.push(aAn(new_p));					
+				}
+				else
+				{
+					a[a.length-1] = aAn(new_p);
+				}
+				
+				obj.set({"products": a });
+				obj.trigger("change_p");
+				return false;
+			});
+
+			$("#r .innerTab li").click(function(e){
+				e.preventDefault();				
+				obj.set({"resources": aAn($(e.currentTarget).text().toLowerCase())});
+				return false;
+			});
+
+			
+			$("#g .innerTab li").click(function(e){
+				e.preventDefault();				
+				obj.set({"group_size": $(e.currentTarget).text().toLowerCase()});
+			});			
+
+			window.obj = new Objective;
+			window.objView = new ObjectiveView;
+			objView.setModel(obj);
+			objView.render();
+			});
+	</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-9733258-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-9733258-1');
+</script>
+</head>
+<body>
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  <div id="header">
+	<p class="pull-left"><a href="//byrdseed.com">&#8592; Back to Byrdseed.com</a></p>
+		<h1 style="clear:both;">The Differentiator</h1>				
+		<div id="sharing">
+			<p>The Differentiator is based on <a href="http://www.amazon.com/Taxonomy-Learning-Teaching-Assessing-Educational/dp/080131903X">Bloom's Taxonomy</a>, Kaplan and Gould's <a href="https://byrdseed.com/introducing-depth-and-complexity/">Depth and Complexity</a>, and David Chung's <a href="https://sites.google.com/site/davidnchung/presentationoptions">product menu</a>.</p> 
+			Try It In: 
+							<a rel="nofollow" href="//byrdseed.com/differentiator/index.php?l=en"> English</a> 
+													<a rel="nofollow" href="//byrdseed.com/differentiator/index.php?l=nl"> Dutch</a> 
+						&#8226;
+			<a rel="nofollow" href="#" id="twitter" data-lang="en">Tweet It</a> &#8226;
+			<a id="pin" href="http://pinterest.com/pin/create/button/?url=http://www.byrdseed.com/differentiator&media=http://byrdseed.com/images/differentiator.png&description=Create%20differentiated%20lesson%20objectives%20with%20The%20Differentiator!">Pin It</a>
+		</div>
+		
+		
+  </div>
+  <div role="main">
+	<div class="hero-unit" id="obj">
+		<div id="text"></div>
+	</div>	
+
+	<ul id="myTab" class="nav nav-tabs">
+		<li><a id="ts_tab" href="#ts_tabs" data-toggle="tab">Thinking Skill</a></li>
+		<li><a id="cm_tab" href="#cm_tabs" data-toggle="tab">Contenu</a></li>
+		<li><a id="rs_tab" href="#rs_tabs" data-toggle="tab">Ressources</a></li>
+		<li><a id="p_tab"  href="#p_tabs" data-toggle="tab">Produits</a></li>
+		<li><a id="g_tab"  href="#g_tabs" data-toggle="tab">Groupes</a></li>
+	</ul>
+	
+	<div class="tab-content">
+	  <div class="tab-pane active" id="ts_tabs">		
+		<p><cite>Revised Bloom's Taxonomy adapted from <a href="http://www.amazon.com/Taxonomy-Learning-Teaching-Assessing-Educational/dp/080131903X">"A Taxonomy for Learning,Teaching, and Assessing: A Revision of Bloom's Taxonomy of Educational Objectives</a>" by Anderson and Krathwohl</cite></p>
+			<ul class="unstyled"  id="ts" class="innerTabs">
+			<li class="innerTab">
+	            <h2>Connaissance</h2>
+	            <ul class="unstyled" >
+	                <li>Se rappeler</li>
+	                <li>Lister</li>
+	                <li>Définir</li>
+	                <li>Statuer</li>
+	                <li>Répéter</li>
+	                <li>Reproduire</li>
+	            </ul>
+	        </li>
+	        <li class="innerTab">
+	            <h2>Compréhension</h2>
+	            <ul class="unstyled" >
+					<li>Classifier</li>
+					<li>Décrire</li>
+					<li>Discuter</li>
+					<li>Développer</li>
+					<li>Identify</li>
+					<li>Localiser</li>
+					<li>Reconnaître</li>
+					<li>Reporter</li>
+					<li>Sélectionner</li>
+					<li>Traduire</li>
+					<li>Paraphraser</li>
+				</ul>
+			</li>
+			<li class="innerTab">
+	           <h2>Application</h2>
+	            <ul class="unstyled" >
+					<li>Choisir</li>
+					<li>Démontrer</li>
+					<li>Mettre en scène</li>
+					<li>Employer</li>
+					<li>Illustrer</li>
+					<li>Interpréter</li>
+					<li>Mettre en pratique</li>
+					<li>Esquisser</li>
+					<li>Résoudre</li>
+					<li>Utiliser</li>
+					<li>Planifier</li>
+				</ul>
+			</li>
+			<li class="innerTab">
+	           <h2>Analyse</h2>
+	            <ul class="unstyled" >
+					<li>Apprécier</li>
+					<li>Comparer</li>
+					<li>Contrast</li>
+					<li>Critiquer</li>
+					<li>Différencier</li>
+					<li>Discriminate</li>
+					<li>Distinguer</li>
+					<li>Examiner</li>
+					<li>Expérimenter</li>
+					<li>Questionner</li>
+					<li>Tester</li>
+				</ul>
+			</li>
+			<li class="innerTab">
+	           <h2>Evaluation</h2>
+	            <ul class="unstyled" >
+					<li>Apprécier</li>
+					<li>Argumenter</li>
+					<li>Contrast</li>
+					<li>Défendre</li>
+					<li>Juger</li>
+					<li>Sélectionner</li>
+					<li>Support</li>
+					<li>Estimer</li>
+					<li>Evaluer</li>
+				</ul>
+			</li>
+			<li class="innerTab">
+	           <h2>Création</h2>
+	            <ul class="unstyled">
+	            <li>Assembler</li>
+					<li>Construire</li>
+					<li>Créer</li>
+					<li>Dessiner</li>
+					<li>Développer</li>
+					<li>Formuler</li>
+					<li>Ecrire</li>
+				</ul>
+			</li>
+
+	        </ul>
+	        <div class="bottom"></div>
+		</div>	  
+		<div class="tab-pane" id="cm_tabs">
+				<p><cite><a href="https://byrdseed.com/introducing-depth-and-complexity/">Depth and Complexity</a> adapted from <em>The Flip Book</em> by Sandra N. Kaplan, Bette Gould &amp; Victoria Siegel. <a href="https://www.byrdseed.com/differentiate-lessons-with-the-content-imperatives/">Content Imperatives</a> adapted from <em>The Flip Book, Too</em> by Sandra Kaplan &amp; Bette Gould.</cite></p>			
+			<div id="cm_options">
+				<input name="cm_opts" id="add_cm" type="radio" value="a"/> 
+				<label for="add_cm">Add</label>							
+				<input name="cm_opts" checked="checked" id="replace_cm" type="radio" value="r"/> 
+				<label for="replace_cm">Replace</label>
+			</div>
+			<ul class="unstyled"  id="cm" class="innerTabs">
+	        <li class="innerTab">
+	            <h2>Profondeur</h2>
+	            <ul class="unstyled" >
+	            	<li>Riche Idée</li>
+	                <li>Questions non répondues</li>
+	                <li>Ethique</li>
+	                <li>Motifs</li>
+	                <li>Règles</li>
+	                <li>Langage de la Discipline</li>
+	                <li>Détails Essentiels</li>
+	                <li>Tendances</li>
+	            </ul>
+	        </li>
+	        <li class="innerTab">
+	           <h2>Complexity</h2>
+	            <ul class="unstyled" >
+	            <li>Points de vue Multiples</li>
+	                <li>Changement dans le temps</li>
+	                <li>Interdisciplinarité</li>
+	            </ul>
+	        </li>
+	        <li class="innerTab">
+	         <h2>Impératifs</h2>
+	            <ul class="unstyled" >
+	            	<li>Origine</li>
+	                <li>Convergence</li>
+	                <li>Parallélisme</li>
+	                <li>Paradoxe</li>
+	                <li>Contribution</li>
+	            </ul>
+	        </li>
+	       <li class="innerTab">
+	         <h2>Mots Clés</h2>
+	            <ul class="unstyled" >
+	            <li>Conséquences</li>
+	                <li>Motivations</li>
+	                <li>Implications</li>
+	                <li>Portée d'application</li>
+	            </ul>
+	        </li>
+	        </ul>
+	        <div class="bottom"></div>
+		</div>		
+		<div class="tab-pane" id="rs_tabs">
+		<ul class="unstyled"  id="r" class="innerTabs">
+			<li class="innerTab">
+	            <h2>Offline</h2>
+	            <ul class="unstyled" >
+	            	<li>Manuel scolaire</li>
+	                <li>Livre de référence</li>
+	                <li>Revue</li>
+	                <li>Journal imprimé</li>
+	                <li>Interview</li>
+	                <li>Encyclopédie papier</li>
+					<li>Expert</li>
+	            </ul>
+	        </li>
+	        <li class="innerTab">
+	            <h2>Online</h2>
+	            <ul class="unstyled" >
+	            	<li>Site Web</li>
+					<li>Wikipedia</li>
+					<li>Encycolpédie en ligne</li>
+					<li>Journal de bord</li>
+					<li>Article</li>
+					<li>Expert</li>					
+				</ul>
+			</li>
+	        </ul>
+	        <div class="bottom">	
+			</div>
+		</div>
+		<div class="tab-pane" id="p_tabs">
+			<p><cite>Adapted from <a href="https://sites.google.com/site/davidnchung/presentationoptions">David Chung</a> and <a href="http://jtayloreducation.com/all-products/jte-1d-the-flip-book-too-e-book/">The Flip Book, Too</a> by Sandra N. Kaplan, Bette Gould & Victoria Siegel</cite></p>			
+			<div id="p_options">
+				<input name="p_opts" id="add_p" type="radio" value="a"/> 
+				<label for="add_p">Add</label>							
+				<input name="p_opts" checked="checked" id="replace_p" type="radio" value="r"/> 
+				<label for="replace_p">Replace</label>
+			</div>			
+			<ul class="unstyled"  id="p" class="innerTabs">
+				<li class="innerTab">
+		            <h2>Visuel</h2>
+		            <ul class="unstyled" >
+		            <li>Figure (Graphique)</li>
+		                <li>Dessin</li>
+		                <li>Chronologie</li>
+						<li>Diagramme</li>
+						<li>Représentation schématique</li>
+						<li>Carte</li>
+						<li>Bande dessinée</li>
+						<li>Couverture</li>
+		                <li>Affiche</li>
+		            </ul>
+		        </li>
+		        <li class="innerTab">
+		            <h2>Construction</h2>
+		            <ul class="unstyled" >
+		        		<li>Modèle</li> 
+						<li>Sculpture</li> 
+						<li>Diorama</li>  
+						<li>Miniature</li>  
+						<li>Art Gallery</li> 
+						<li>Museum Exhibit</li>  
+						<li>Mobile</li> 
+					</ul>
+				</li>
+				<li class="innerTab">
+					<h2>Oral</h2>
+					<ul class="unstyled" >
+			            <li>Debate</li>
+						<li>Panel Discussion</li>
+						<li>Lesson</li>
+						<li>Reporter</li>
+						<li>Play</li>
+						<li>Readers' Theater </li>
+						<li>Press Conference</li>
+						<li>Talk Show</li>
+						<li>Monologue</li>
+						<li>Movie Review</li>
+					</ul>
+				</li>
+				<li class="innerTab">
+					<h2>Multimedia</h2>
+					<ul class="unstyled" >
+			            <li>Song</li>
+						<li>Illustrated Book</li>
+						<li>Journal imprimé</li>
+						<li>TV Show</li>
+						<li>PowerPoint</li>
+						<li>Video Poetry</li>
+						<li>Photo Essay</li>
+						<li>Video Travelogue</li>
+						<li>News Report</li>
+						<li>Webpage</li>
+					</ul>
+				</li>
+				<li class="innerTab">
+					<h2>Written</h2>
+					<ul class="unstyled" >
+			            <li>Response To Literature</li>
+						<li>Reporter</li>
+						<li>Article</li>
+						<li>Persuasive Essay</li>
+						<li>Sequel</li>
+						<li>Letter</li>
+						<li>Children's Story</li>
+						<li>Poem/Song</li>
+						<li>Eulogy</li>
+						<li>Diary</li>
+						<li>Review</li>
+						<li>Story In A New Genre</li>			
+					</ul>
+				</li>
+			</ul>
+			<div class="bottom">	
+			</div>			
+		</div>
+		<div class="tab-pane" id="g_tabs">
+			<ul class="unstyled"  id="g" class="innerTabs">
+				<li class="innerTab">
+		            <h2>Group Size</h2>
+		            <ul class="unstyled" >
+			            <li>One</li>
+			            <li>Two</li>
+			            <li>Three</li>
+			            <li>Four</li>
+		            </ul>
+		        </li>
+		    </ul>
+			<div class="bottom"></div>
+		</div>	
+	</div>	
+	
+	
+  </div>
+  <br>
+  <footer>
+		<p>Please get in touch: <a href="mailto:ian@byrdseed.com">ian@byrdseed.com</a> or <a href="http://twitter.com/ianabyrd">@IanAByrd</a></p>
+  </footer>
+
+</body>
+</html>
