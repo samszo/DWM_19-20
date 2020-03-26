@@ -610,7 +610,8 @@ $('#infosEtu').on('show.bs.modal', function (e) {
     d3.select('#sitePerso').html(htm);
     url = selectEtu['Page Github'];
     var urlGitHub = 'https://github.com/'+selectEtu['Projet Github'];
-    htm = '<p><a href="'+url+'">'+url+'</a> - <a href="'+url+'/template/pwa'+'">PWA</a> - <a href="'+urlGitHub+'/issues">ISSUES</a></p>';
+    htm = '<p><a href="'+url+'">'+url+'</a> - <a href="'+url+'/template/pwa'+'">PWA</a> - <a href="'+urlGitHub+'/issues">ISSUES</a>';
+    htm += ' - <a href="'+selectEtu['site omeka']+'">'+selectEtu['site omeka']+'</a></p>';
     htm += '<div class="row h-100" >';
     htm += '<div class="col-sm">';
     htm += '<iframe id="ifSiteProjet" title="Site Projet" src="'+url+'"></iframe>';
