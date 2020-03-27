@@ -14,41 +14,27 @@
     //initialisation des variables
     var urlOmk = "http://193.54.152.41/DWM1920/Houdinews"
     var urlAPI = urlOmk+"/api/";
+    urlAPI = "data/Houdinews-items.json";
 
     //récupération des items
     function getItems(){
-        var url = urlAPI+"items";
-        var myHeaders = new Headers();
-        var myInit = { method: 'GET',
-               headers: myHeaders,
-               mode: 'cors',
-               cache: 'default' };
-        var myRequest = new Request(url,myInit);
 
-        fetch(myRequest).then(function(response) {
-            var contentType = response.headers.get("content-type");
-            if(contentType && contentType.indexOf("application/json") !== -1) {
-                return response.json().then(function(json) {
-                // traitement du JSON
+        d3.json(urlAPI).then(function(data) {
+            console.log(data);
+            //supprime les anciens résultats
+            d3.select("#result").selectAll("div").remove();
+            //affiche le résultat de la requête
+            d3.select("#result").selectAll("div").data(data).enter().append('div')
+                .html(d => {
+                    var html = '<h1>'+d['o:title']+'</h1>';
+                    if(d['houdinews:houdinewsintitule'])
+                        html += '<p>'+d['houdinews:houdinewsintitule'][0]['@value']+'</p>';
+                    if(d['houdinews:houdinewssource'])
+                        html += '<p>'+d['houdinews:houdinewssource'][0]['@id']+'</p>';
+                    return html;
                 });
-            } else {
-                console.log("Oops, nous n'avons pas du JSON!");
-            }
-            });
+        });
     }
-    
-    /*
-    d3.json(urlAPI+"items").then(function(data) {
-        console.log(data);
-        //supprime les anciens résultats
-        d3.select("#result").selectAll("div").remove();
-        //affiche le résultat de la requête
-        d3.select("#result").selectAll("div").data().enter().append('div')
-            .html(d => {
-                return d;
-            });
-    });
-    */
 
 </script>
 </body>
